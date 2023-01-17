@@ -45,10 +45,14 @@ public class UIManager : MonoBehaviour
         ScoreText.text=ScoreManager.Instance.score.ToString();
     }
 
-    public void UpdateProgressBar(float value)
+    public void UpdateProgressBar(float value,float duration)
     {
-        // <!-- DG TWEEN IMPORT --!>
-        //progressImage.DOFillAmount(value,0.5f);
+        progressImage.DOFillAmount(value,duration);
+    }
+
+    public void UpdateRequirementText()
+    {
+        RequirementText.text=GameManager.Instance.RequirementNumber.ToString();
     }
 
     public void StartFader()

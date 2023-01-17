@@ -11,7 +11,7 @@ public abstract class Obstacleable : MonoBehaviour
     internal string interactionTag = "Player";
 
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (!canInteract) return;
         if (other.tag == interactionTag)
@@ -21,7 +21,7 @@ public abstract class Obstacleable : MonoBehaviour
     }
     // !!!!!!!!!!!!!!
     //Kaldigi sure boyunca burasi da aktif oluyor
-    void OnTriggerStay(Collider other)
+    void OnTriggerStay2D(Collider2D other)
     {
         if (!canInteract) return;
         if (other.tag == interactionTag)
@@ -29,7 +29,7 @@ public abstract class Obstacleable : MonoBehaviour
             InteractWithPlayer(other.GetComponent<Player>());
         }
     }
-    void OnTriggerExit(Collider other)
+    void OnTriggerExit2D(Collider2D other)
     {
         if (other.tag == interactionTag)
         {

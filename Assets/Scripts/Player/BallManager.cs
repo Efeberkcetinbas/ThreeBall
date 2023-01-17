@@ -36,5 +36,22 @@ public class BallManager : MonoBehaviour
     {
         if (index == balls.Count) index = 0;
     }
+
+    public IEnumerator ResetBallSpeed(float dragPower)
+    {
+        for (int i = 0; i < balls.Count; i++)
+        {
+            yield return new WaitForSeconds(1f);
+            balls[i].GetComponent<Rigidbody2D>().drag=dragPower;
+        }
+    }
+
+    public void StopBall()
+    {
+        for (int i = 0; i < balls.Count; i++)
+        {
+            balls[i].GetComponent<Rigidbody2D>().drag=150;
+        }
+    }
     
 }

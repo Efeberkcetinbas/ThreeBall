@@ -47,8 +47,9 @@ public class LevelManager : MonoBehaviour
         //ScoreManager.Instance.score=PlayerPrefs.GetInt("Score");
         //UIManager.Instance.UpgradeScoreText();
         GameManager.Instance.UpdateBallsPositions();
+        GameManager.Instance.UpdateRequirement();
 
-        //GameManager.Instance.ResetTheLevel();
+        GameManager.Instance.ResetTheLevel();
         GameManager.Instance.isGameEnd=false;
         
         
