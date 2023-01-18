@@ -3567,11 +3567,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7252541320724313896, guid: e65051af423e62349815b216211558d9, type: 3}
       propertyPath: m_Color.g
-      value: 0.619101
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7252541320724313896, guid: e65051af423e62349815b216211558d9, type: 3}
       propertyPath: m_Color.r
-      value: 0.40943396
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7252541320724313898, guid: e65051af423e62349815b216211558d9, type: 3}
       propertyPath: m_LinearDrag
@@ -4469,11 +4469,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7252541320724313896, guid: e65051af423e62349815b216211558d9, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7252541320724313896, guid: e65051af423e62349815b216211558d9, type: 3}
       propertyPath: m_Color.g
-      value: 0.9855349
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7252541320724313896, guid: e65051af423e62349815b216211558d9, type: 3}
       propertyPath: m_Color.r
@@ -5274,11 +5274,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7252541320724313896, guid: e65051af423e62349815b216211558d9, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7252541320724313896, guid: e65051af423e62349815b216211558d9, type: 3}
       propertyPath: m_Color.g
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7252541320724313896, guid: e65051af423e62349815b216211558d9, type: 3}
       propertyPath: m_Color.r

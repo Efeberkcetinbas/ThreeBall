@@ -28,6 +28,7 @@ public class BetweenPoints : Obstacleable
             gameManager.UpdateProgress();
             cameraManager.ShakeIt();
             soundManager.Play("Tick");
+            gameManager.canCollide=false;
         }
 
         if(gameManager.RequirementNumber==0) gameManager.Door.SetActive(true);

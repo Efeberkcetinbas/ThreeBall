@@ -19,10 +19,12 @@ public class BallManager : MonoBehaviour
         for (int i = 0; i < balls.Count; i++)
         {
             balls[i].transform.GetChild(0).gameObject.SetActive(false);
+            balls[i].transform.GetComponent<SpriteRenderer>().color=Color.white;
             balls[i].GetComponent<BallControl>().canShoot=false;    
         }
         
-        balls[index].transform.GetChild(0).gameObject.SetActive(true);
+        //balls[index].transform.GetChild(0).gameObject.SetActive(true);
+        balls[index].transform.GetComponent<SpriteRenderer>().color=Color.red;
         balls[index].GetComponent<BallControl>().canShoot=true;    
         //GameManager.Instance.LineOpenControl(index);
     }
