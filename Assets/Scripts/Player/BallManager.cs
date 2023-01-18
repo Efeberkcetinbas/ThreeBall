@@ -24,6 +24,7 @@ public class BallManager : MonoBehaviour
         
         balls[index].transform.GetChild(0).gameObject.SetActive(true);
         balls[index].GetComponent<BallControl>().canShoot=true;    
+        //GameManager.Instance.LineOpenControl(index);
     }
 
     public void IncreaseIndex()

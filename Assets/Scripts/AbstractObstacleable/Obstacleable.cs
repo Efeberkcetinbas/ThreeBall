@@ -11,6 +11,7 @@ public abstract class Obstacleable : MonoBehaviour
     internal string interactionTag = "Player";
 
 
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (!canInteract) return;

@@ -4,13 +4,26 @@ using UnityEngine;
 
 public class BetweenPoints : Obstacleable
 {
-     public BetweenPoints()
+    [SerializeField] private int customId;
+
+    private GameManager gameManager;
+
+    void Start()
+    {
+        gameManager=GameManager.Instance;
+    }
+    public BetweenPoints()
     {
         interactionTag="Ball";
     }
     internal override void DoAction(Player player)
     {
-        Debug.Log("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
+        if(gameManager.canCollide && customId==player.id)
+        {
+            gameManager.ChangeRequirement(-1);
+            gameManager.UpdateProgress();
+            Debug.Log("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
+        }
     }
 
     

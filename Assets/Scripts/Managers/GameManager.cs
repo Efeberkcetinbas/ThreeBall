@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public GameObject successPanel;
     public GameObject failPanel;
     public bool isGameEnd=false;
+    
 
     [Header("Balls")]
     public Transform ball1,ball2,ball3;
@@ -21,6 +22,10 @@ public class GameManager : MonoBehaviour
 
     private int tempRequirementNumber;
     private float progressNumber=0;
+
+    [Header("Line Collisions")]
+    public List<GameObject> LinesCol=new List<GameObject>(); 
+    public bool canCollide=false;
 
     [Header("Scripts")]
     public BallManager ballManager;
@@ -35,7 +40,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-   
+
 
     public void ResetTheLevel()
     {
@@ -43,6 +48,7 @@ public class GameManager : MonoBehaviour
         failPanel.SetActive(false);
         UIManager.Instance.UpdateProgressBar(0,0.1f);
         progressNumber=0;
+        canCollide=false;
     }
 
 
@@ -55,6 +61,16 @@ public class GameManager : MonoBehaviour
             else
                 gameObjects[i].SetActive(false);
         }
+    }
+
+    public void LineOpenControl(int selected)
+    {
+        for (int i = 0; i < LinesCol.Count; i++)
+        {
+            LinesCol[i].SetActive(false);
+        }
+
+        LinesCol[selected].SetActive(true);
     }
 
     public void UpdateBallsPositions()

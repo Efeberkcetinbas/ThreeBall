@@ -19,11 +19,17 @@ public class BallControl : MonoBehaviour
     public bool canShoot=false;
 
     private Camera cm;
+
+    
+    private GameManager gameManager;
+
     private void Start()
     {
         cm=Camera.main;
         ballManager=FindObjectOfType<BallManager>();
         lrManager=FindObjectOfType<LineRendererManager>();
+        gameManager=GameManager.Instance;
+
     }
    
     private void Update()
@@ -61,6 +67,7 @@ public class BallControl : MonoBehaviour
         dragStartPos.z = 0f;
         lrManager.lr.positionCount = 1;
         lrManager.lr.SetPosition(0, dragStartPos);
+        gameManager.canCollide=false;
     }
     private void Dragging()
     {
@@ -79,6 +86,7 @@ public class BallControl : MonoBehaviour
         Vector3 force = dragStartPos - dragReleasePos;
         Vector3 clampedForce = Vector3.ClampMagnitude(force, maxDrag) * power;
         rb.AddForce(clampedForce, ForceMode2D.Impulse);
+        gameManager.canCollide=true;
         StartCoroutine(Call());
     }
 
@@ -97,8 +105,7 @@ public class BallControl : MonoBehaviour
         /*
         Added For Trying Progress and Requirement
         */
-        GameManager.Instance.ChangeRequirement(-1);
-        GameManager.Instance.UpdateProgress();
+        
     }
 
 
