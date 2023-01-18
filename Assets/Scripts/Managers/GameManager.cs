@@ -76,13 +76,11 @@ public class GameManager : MonoBehaviour
         RequirementNumber=FindObjectOfType<RequirementControl>().requirementNumber;
         UIManager.Instance.UpdateRequirementText();
         tempRequirementNumber=RequirementNumber;
-        Debug.Log("TEMP " + tempRequirementNumber);
     }
 
     public void UpdateProgress()
     {
         float value=1/(float)tempRequirementNumber;
-        Debug.Log("VALUE : " + value);
         progressNumber+=value;
         
         UIManager.Instance.UpdateProgressBar(progressNumber,0.5f);

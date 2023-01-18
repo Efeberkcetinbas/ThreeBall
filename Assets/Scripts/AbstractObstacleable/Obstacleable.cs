@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(BoxCollider2D))]
+//[RequireComponent(typeof(BoxCollider2D))]
 public abstract class Obstacleable : MonoBehaviour
 {
     float st = 0;
@@ -23,11 +23,11 @@ public abstract class Obstacleable : MonoBehaviour
     //Kaldigi sure boyunca burasi da aktif oluyor
     void OnTriggerStay2D(Collider2D other)
     {
-        if (!canInteract) return;
+        /*if (!canInteract) return;
         if (other.tag == interactionTag)
         {
             InteractWithPlayer(other.GetComponent<Player>());
-        }
+        }*/
     }
     void OnTriggerExit2D(Collider2D other)
     {

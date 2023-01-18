@@ -1231,13 +1231,15 @@ GameObject:
   - component: {fileID: 748617438}
   - component: {fileID: 748617437}
   - component: {fileID: 748617436}
+  - component: {fileID: 748617439}
+  - component: {fileID: 748617440}
   m_Layer: 0
-  m_Name: LineManager
+  m_Name: LineCollisionManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!120 &748617434
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -1371,6 +1373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e0ab69bdd46ae246a7ae16c837fc131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colliderPoints: []
 --- !u!60 &748617437
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1417,6 +1420,40 @@ MonoBehaviour:
   - {fileID: 7252541319958672406}
   - {fileID: 1896292324}
   - {fileID: 1447049273}
+  - {fileID: 7252541319958672406}
+--- !u!50 &748617439
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748617430}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &748617440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748617430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d64c21b2d0cb06c4ea85aa7607c08337, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &753391427
 GameObject:
   m_ObjectHideFlags: 0
@@ -2533,6 +2570,10 @@ PrefabInstance:
       propertyPath: m_LinearDrag
       value: 2.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7252541320724313898, guid: e65051af423e62349815b216211558d9, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7252541320724313899, guid: e65051af423e62349815b216211558d9, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -3105,6 +3146,10 @@ PrefabInstance:
     - target: {fileID: 7252541320724313898, guid: e65051af423e62349815b216211558d9, type: 3}
       propertyPath: m_LinearDrag
       value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7252541320724313898, guid: e65051af423e62349815b216211558d9, type: 3}
+      propertyPath: m_Constraints
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7252541320724313899, guid: e65051af423e62349815b216211558d9, type: 3}
       propertyPath: m_RootOrder
@@ -3908,6 +3953,10 @@ PrefabInstance:
     - target: {fileID: 7252541320724313898, guid: e65051af423e62349815b216211558d9, type: 3}
       propertyPath: m_LinearDrag
       value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7252541320724313898, guid: e65051af423e62349815b216211558d9, type: 3}
+      propertyPath: m_Constraints
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7252541320724313899, guid: e65051af423e62349815b216211558d9, type: 3}
       propertyPath: m_RootOrder
