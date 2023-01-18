@@ -27,6 +27,10 @@ public class GameManager : MonoBehaviour
     public List<GameObject> LinesCol=new List<GameObject>(); 
     public bool canCollide=false;
 
+    [Header("Door Control")]
+    public GameObject Door;
+    internal Transform DoorTransform;
+
     [Header("Scripts")]
     public BallManager ballManager;
     private void Awake()
@@ -71,6 +75,13 @@ public class GameManager : MonoBehaviour
         }
 
         LinesCol[selected].SetActive(true);
+    }
+
+    public void UpdateDoorPosition()
+    {
+        DoorTransform=FindObjectOfType<DoorPosition>().doorPos;
+        Door.transform.position=DoorTransform.position;
+        Door.SetActive(false);
     }
 
     public void UpdateBallsPositions()

@@ -18,12 +18,14 @@ public class BetweenPoints : Obstacleable
     }
     internal override void DoAction(Player player)
     {
-        if(gameManager.canCollide && customId==player.id)
+        if(gameManager.canCollide && customId==player.id && gameManager.RequirementNumber>0)
         {
             gameManager.ChangeRequirement(-1);
             gameManager.UpdateProgress();
             Debug.Log("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
         }
+
+        if(gameManager.RequirementNumber==0) gameManager.Door.SetActive(true);
     }
 
     

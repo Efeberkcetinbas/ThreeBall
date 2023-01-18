@@ -12,7 +12,7 @@ public abstract class Obstacleable : MonoBehaviour
 
 
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerExit2D(Collider2D other)
     {
         if (!canInteract) return;
         if (other.tag == interactionTag)
@@ -30,14 +30,14 @@ public abstract class Obstacleable : MonoBehaviour
             InteractWithPlayer(other.GetComponent<Player>());
         }*/
     }
-    void OnTriggerExit2D(Collider2D other)
+    /*void OnTriggerExit2D(Collider2D other)
     {
         if (other.tag == interactionTag)
         {
             InteractionExit(other.GetComponent<Player>());
         }
     }
-
+*/
     void StartInteractWithPlayer(Player player)
     {
         DoAction(player);
@@ -59,7 +59,7 @@ public abstract class Obstacleable : MonoBehaviour
     }
     internal virtual void InteractionExit(Player player)
     {
-        st = 0;
+        throw new System.NotImplementedException();
     }
     internal virtual void DoAction(Player player)
     {

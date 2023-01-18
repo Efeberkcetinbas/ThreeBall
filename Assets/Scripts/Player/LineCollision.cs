@@ -61,46 +61,5 @@ public class LineCollision : MonoBehaviour
         return colliderPositions;
     }
 
-
-    private List<Vector2> MyCalculateColliderPoints() {
-        //Get All positions on the line renderer
-        Vector3[] positions = lc.GetPositions();
-
-        //Get the Width of the Line
-        float width = lc.GetWidth();
-
-        //m = (y2 - y1) / (x2 - x1)
-        float m = (positions[1].y - positions[0].y) / (positions[1].x - positions[0].x);
-        /*float m2=(positions[2].y-positions[0].y)/(positions[2].x-positions[0].x);
-        float m3=(positions[2].y-positions[1].y)/(positions[2].x-positions[1].x);*/
-
-        float deltaX = (width / 2f) * (m / Mathf.Pow(m * m + 1, 0.5f));
-        float deltaY = (width / 2f) * (1 / Mathf.Pow(1 + m * m, 0.5f));
-
-        /*float deltaX2=(width/2f) * (m2/Mathf.Pow(m2*m2+1,0.5f));
-        float deltaY2=(width / 2f) * (1 / Mathf.Pow(1 + m2 * m2, 0.5f));
-
-        float deltaX3=(width/2f) * (m3/Mathf.Pow(m3*m3+1,0.5f));
-        float deltaY3=(width / 2f) * (1 / Mathf.Pow(1 + m3 * m3, 0.5f));*/
-
-
-        //Calculate the Offset from each point to the collision vertex
-        Vector3[] offsets = new Vector3[2];
-        offsets[0] = new Vector3(-deltaX, deltaY);
-        offsets[1] = new Vector3(deltaX, -deltaY);
-        /*offsets[2] = new Vector3(-deltaX2, deltaY2);
-        offsets[3] = new Vector3(deltaX2, -deltaY2);
-        offsets[4] = new Vector3(-deltaX3, deltaY3);
-        offsets[5] = new Vector3(deltaX3, -deltaY);*/
-
-        //Generate the Colliders Vertices
-        List<Vector2> colliderPositions = new List<Vector2> {
-            positions[0] + offsets[0],
-            positions[1] + offsets[0],
-            positions[1] + offsets[1],
-            positions[0] + offsets[1]
-        };
-
-        return colliderPositions;
-    }
+    
 }

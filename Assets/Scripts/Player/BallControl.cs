@@ -68,6 +68,7 @@ public class BallControl : MonoBehaviour
         lrManager.lr.positionCount = 1;
         lrManager.lr.SetPosition(0, dragStartPos);
         gameManager.canCollide=false;
+        gameManager.LineOpenControl(ballManager.index);
     }
     private void Dragging()
     {
