@@ -20,6 +20,7 @@ public abstract class Obstacleable : MonoBehaviour
             StartInteractWithPlayer(other.GetComponent<Player>());
         }
     }
+    
     // !!!!!!!!!!!!!!
     //Kaldigi sure boyunca burasi da aktif oluyor
     void OnTriggerStay2D(Collider2D other)

@@ -7,10 +7,14 @@ public class BetweenPoints : Obstacleable
     [SerializeField] private int customId;
 
     private GameManager gameManager;
+    private CameraManager cameraManager;
+    private SoundManager soundManager;
 
     void Start()
     {
         gameManager=GameManager.Instance;
+        cameraManager=CameraManager.Instance;
+        soundManager=SoundManager.Instance;
     }
     public BetweenPoints()
     {
@@ -22,7 +26,8 @@ public class BetweenPoints : Obstacleable
         {
             gameManager.ChangeRequirement(-1);
             gameManager.UpdateProgress();
-            Debug.Log("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
+            cameraManager.ShakeIt();
+            soundManager.Play("Tick");
         }
 
         if(gameManager.RequirementNumber==0) gameManager.Door.SetActive(true);
