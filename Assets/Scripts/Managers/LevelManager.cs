@@ -68,7 +68,12 @@ public class LevelManager : MonoBehaviour
 
     public void RestartLevel()
     {
-        LoadLevel();
+        UIManager.Instance.StartFader();
+        GameManager.Instance.UpdateBallsPositions();
+        GameManager.Instance.UpdateRequirement();
+        GameManager.Instance.UpdateDoorPosition();
+        GameManager.Instance.ResetTheLevel();
+        GameManager.Instance.isGameEnd=false;
     }
     
 }

@@ -362,7 +362,7 @@ GameObject:
   - component: {fileID: 172539801}
   - component: {fileID: 172539800}
   m_Layer: 0
-  m_Name: Circle
+  m_Name: BallInitialPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2616,7 +2616,7 @@ GameObject:
   - component: {fileID: 1107564372}
   - component: {fileID: 1107564371}
   m_Layer: 0
-  m_Name: Circle
+  m_Name: BallInitialPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2649,9 +2649,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ffe1af4adaf42d4eaccc08a78c4557b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pos1: {x: -1, y: 1}
-  pos2: {x: 1, y: -1}
-  pos3: {x: 0, y: 1}
+  pos1: {x: -1.2, y: 1}
+  pos2: {x: 0, y: -1}
+  pos3: {x: 1.2, y: 1}
 --- !u!212 &1107564372
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5343,7 +5343,7 @@ GameObject:
   - component: {fileID: 2090547177}
   - component: {fileID: 2090547176}
   m_Layer: 0
-  m_Name: Circle
+  m_Name: BallInitialPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5377,8 +5377,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pos1: {x: -1, y: 1}
-  pos2: {x: 1, y: -1}
-  pos3: {x: 0, y: 1}
+  pos2: {x: 0, y: -1}
+  pos3: {x: 1, y: 0}
 --- !u!212 &2090547177
 SpriteRenderer:
   m_ObjectHideFlags: 0

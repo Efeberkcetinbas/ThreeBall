@@ -26,7 +26,7 @@ public class BetweenPoints : Obstacleable
     }
     internal override void DoAction(Player player)
     {
-        if(gameManager.canCollide && customId==player.id && gameManager.RequirementNumber>0)
+        if(gameManager.canCollide && customId==player.id && gameManager.RequirementNumber>0 && !gameManager.isGameEnd)
         {
             gameManager.ChangeRequirement(-1);
             gameManager.UpdateProgress();
@@ -37,9 +37,11 @@ public class BetweenPoints : Obstacleable
             StartCoroutine(EnabledFalse());
         }
         //gameManager.Door.SetActive(true);
-        if(gameManager.RequirementNumber==0)
+        if(gameManager.RequirementNumber==0 && !gameManager.isGameEnd)
         {
+            Debug.Log("SUCCESS");
             gameManager.success=true;
+            gameManager.isGameEnd=true;
             StartCoroutine(NextLevel());
 
         }

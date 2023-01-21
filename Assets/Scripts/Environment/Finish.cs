@@ -11,9 +11,9 @@ public class Finish : Obstacleable
     }
     internal override void DoAction(Player player)
     {
-        GameManager.Instance.isGameEnd=true;
+        //GameManager.Instance.isGameEnd=true;
         //GameManager.Instance.successPanel.SetActive(true);
-        StartCoroutine(NextLevel());
+        //StartCoroutine(NextLevel());
     }
 
     private IEnumerator NextLevel()
