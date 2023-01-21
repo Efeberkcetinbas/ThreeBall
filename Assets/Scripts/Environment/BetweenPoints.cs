@@ -39,7 +39,6 @@ public class BetweenPoints : Obstacleable
         //gameManager.Door.SetActive(true);
         if(gameManager.RequirementNumber==0 && !gameManager.isGameEnd)
         {
-            Debug.Log("SUCCESS");
             gameManager.success=true;
             gameManager.isGameEnd=true;
             StartCoroutine(NextLevel());
