@@ -22,6 +22,7 @@ public class BallControl : MonoBehaviour
 
     
     private GameManager gameManager;
+    private LevelManager levelManager;
 
     private void Start()
     {
@@ -29,6 +30,7 @@ public class BallControl : MonoBehaviour
         ballManager=FindObjectOfType<BallManager>();
         lrManager=FindObjectOfType<LineRendererManager>();
         gameManager=GameManager.Instance;
+        levelManager=LevelManager.Instance;
 
     }
    
@@ -88,6 +90,16 @@ public class BallControl : MonoBehaviour
         Vector3 clampedForce = Vector3.ClampMagnitude(force, maxDrag) * power;
         rb.AddForce(clampedForce, ForceMode2D.Impulse);
         gameManager.canCollide=true;
+        if(gameManager.TurnNumber==0 && !gameManager.success) 
+        {
+            gameManager.isGameEnd=true;
+            levelManager.RestartLevel();
+            Debug.Log("FAILLLL");
+        }
+        else
+        {
+            gameManager.ChangeTurnNumber(-1);
+        }
         StartCoroutine(Call());
     }
 

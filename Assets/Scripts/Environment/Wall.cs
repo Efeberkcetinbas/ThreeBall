@@ -11,6 +11,6 @@ public class Wall : Obstacleable
 
     internal override void DoAction(Player player)
     {
-        SoundManager.Instance.Play("Wall");
+        //SoundManager.Instance.Play("Wall");
     }
 }

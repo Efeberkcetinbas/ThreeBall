@@ -9,12 +9,16 @@ public class BetweenPoints : Obstacleable
     private GameManager gameManager;
     private CameraManager cameraManager;
     private SoundManager soundManager;
-
+    private LevelManager levelManager;
+    private LineRenderer lineRenderer;
     void Start()
     {
         gameManager=GameManager.Instance;
         cameraManager=CameraManager.Instance;
         soundManager=SoundManager.Instance;
+        levelManager=LevelManager.Instance;
+
+        lineRenderer=GetComponent<LineRenderer>();
     }
     public BetweenPoints()
     {
@@ -29,10 +33,28 @@ public class BetweenPoints : Obstacleable
             cameraManager.ShakeIt();
             soundManager.Play("Tick");
             gameManager.canCollide=false;
+            lineRenderer.enabled=true;
+            StartCoroutine(EnabledFalse());
         }
+        //gameManager.Door.SetActive(true);
+        if(gameManager.RequirementNumber==0)
+        {
+            gameManager.success=true;
+            StartCoroutine(NextLevel());
 
-        if(gameManager.RequirementNumber==0) gameManager.Door.SetActive(true);
+        }
     }
 
+    private IEnumerator EnabledFalse()
+    {
+        yield return new WaitForSeconds(0.2f);
+        lineRenderer.enabled=false;
+    }
+
+    private IEnumerator NextLevel()
+    {
+        yield return new WaitForSeconds(1f);
+        LevelManager.Instance.LoadNextLevel();
+    }
     
 }

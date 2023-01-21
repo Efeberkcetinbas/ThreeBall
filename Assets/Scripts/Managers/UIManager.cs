@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI LevelText;
     public TextMeshProUGUI ScoreText;
     public TextMeshProUGUI RequirementText;
+    public TextMeshProUGUI TurnNumberText;
 
     [Header("Images")]
     public Image progressImage;
@@ -53,6 +54,11 @@ public class UIManager : MonoBehaviour
     public void UpdateRequirementText()
     {
         RequirementText.text=GameManager.Instance.RequirementNumber.ToString();
+    }
+
+    public void UpdateTurnNumberText()
+    {
+        TurnNumberText.text=GameManager.Instance.TurnNumber.ToString();
     }
 
     public void StartFader()

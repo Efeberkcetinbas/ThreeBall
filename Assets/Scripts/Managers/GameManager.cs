@@ -13,12 +13,19 @@ public class GameManager : MonoBehaviour
     
 
     [Header("Balls")]
-    public Transform ball1,ball2,ball3;
+    public Transform ball1;
+    public Transform ball2;
+    public Transform ball3;
 
     public Vector2 Pos1,Pos2,Pos3;
 
     [Header("Requirement")]
     public int RequirementNumber;
+
+    //Kaç kez swipelama hakkimiz var
+    public int TurnNumber;
+    //Her levelde ne kadar fazlasinin Turn Number olacagini secebiliyoruz
+    public int IncreaseRightNumber;
 
     private int tempRequirementNumber;
     private float progressNumber=0;
@@ -26,6 +33,7 @@ public class GameManager : MonoBehaviour
     [Header("Line Collisions")]
     public List<GameObject> LinesCol=new List<GameObject>(); 
     public bool canCollide=false;
+    public bool success=false;
 
     [Header("Door Control")]
     public GameObject Door;
@@ -53,6 +61,7 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.UpdateProgressBar(0,0.1f);
         progressNumber=0;
         canCollide=false;
+        success=false;
     }
 
 
@@ -101,8 +110,11 @@ public class GameManager : MonoBehaviour
     public void UpdateRequirement()
     {
         RequirementNumber=FindObjectOfType<RequirementControl>().requirementNumber;
+        IncreaseRightNumber=FindObjectOfType<IncreaseTurnN>().increaseTurnNumber;
         UIManager.Instance.UpdateRequirementText();
         tempRequirementNumber=RequirementNumber;
+        TurnNumber=RequirementNumber+IncreaseRightNumber;
+        UIManager.Instance.UpdateTurnNumberText();        
     }
 
     public void UpdateProgress()
@@ -118,6 +130,13 @@ public class GameManager : MonoBehaviour
         RequirementNumber+=amount;
         UIManager.Instance.UpdateRequirementText();
         return RequirementNumber;
+    }
+
+    public int ChangeTurnNumber(int amount)
+    {
+        TurnNumber+=amount;
+        UIManager.Instance.UpdateTurnNumberText();
+        return TurnNumber;
     }
 
 }

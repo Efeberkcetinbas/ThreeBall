@@ -66,7 +66,7 @@ public class LevelManager : MonoBehaviour
 
     public void RestartLevel()
     {
-        GameManager.Instance.ResetTheLevel();
+        LoadLevel();
     }
     
 }
