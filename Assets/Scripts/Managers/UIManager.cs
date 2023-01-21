@@ -65,9 +65,8 @@ public class UIManager : MonoBehaviour
     {
         fader.gameObject.SetActive(true);
 
-        // <!-- DG TWEEN IMPORT --!>
-        /*fader.DOScale(new Vector3(3,3,3),1).OnComplete(()=>{
+        fader.DOScale(new Vector3(3,3,3),1).OnComplete(()=>{
             fader.DOScale(Vector3.zero,1f).OnComplete(()=>fader.gameObject.SetActive(false));
-        });*/
+        });
     }
 }

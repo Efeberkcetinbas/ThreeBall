@@ -31,6 +31,9 @@ public class LevelManager : MonoBehaviour
     }
     private void LoadLevel()
     {
+
+        UIManager.Instance.StartFader();
+
         levelIndex = PlayerPrefs.GetInt("LevelNumber");
         if (levelIndex == levels.Count) levelIndex = 0;
         PlayerPrefs.SetInt("LevelNumber", levelIndex);
@@ -61,7 +64,6 @@ public class LevelManager : MonoBehaviour
         PlayerPrefs.SetInt("LevelNumber", levelIndex + 1);
         PlayerPrefs.SetInt("RealLevel", PlayerPrefs.GetInt("RealLevel", 0) + 1);
         LoadLevel();
-        //UIManager.Instance.StartFader();
     }
 
     public void RestartLevel()
