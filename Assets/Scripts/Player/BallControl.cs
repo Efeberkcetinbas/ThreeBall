@@ -38,6 +38,15 @@ public class BallControl : MonoBehaviour
     {
         if(!GameManager.Instance.isGameEnd)
         {
+
+            if(gameManager.CheckLife()==false)
+            {
+                gameManager.isGameEnd=true;
+                levelManager.RestartLevel();
+                Debug.Log("NO RIGHT TO USE IT");
+            }
+
+            
             if(canShoot)
                 DragControl();
         }
@@ -90,6 +99,9 @@ public class BallControl : MonoBehaviour
         Vector3 clampedForce = Vector3.ClampMagnitude(force, maxDrag) * power;
         rb.AddForce(clampedForce, ForceMode2D.Impulse);
         gameManager.canCollide=true;
+
+        
+
         if(gameManager.TurnNumber==0 && !gameManager.success) 
         {
             gameManager.isGameEnd=true;

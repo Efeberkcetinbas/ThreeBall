@@ -144,4 +144,10 @@ public class GameManager : MonoBehaviour
         return TurnNumber;
     }
 
+    public bool CheckLife()
+    {
+        if(TurnNumber-RequirementNumber<0) return false;
+        return true;
+    }
+
 }
