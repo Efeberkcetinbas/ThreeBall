@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class BallControl : MonoBehaviour
 {
@@ -32,25 +33,30 @@ public class BallControl : MonoBehaviour
         gameManager=GameManager.Instance;
         levelManager=LevelManager.Instance;
 
+
     }
    
     private void Update()
     {
         if(!GameManager.Instance.isGameEnd)
         {
-
-            if(gameManager.CheckLife()==false)
-            {
-                gameManager.isGameEnd=true;
-                levelManager.RestartLevel();
-                Debug.Log("NO RIGHT TO USE IT");
-            }
-
             
             if(canShoot)
                 DragControl();
         }
             
+    }
+
+    //Hemen cagiriyor bu yuzden sonuclanmadan direk oluyor
+    private IEnumerator CheckIfReq()
+    {
+        yield return null;
+        if(gameManager.CheckLife()==false)
+        {
+            gameManager.isGameEnd=true;
+            levelManager.RestartLevel();
+            Debug.Log("NO RIGHT TO USE IT");
+        }
     }
 
     private void DragControl()
@@ -80,6 +86,9 @@ public class BallControl : MonoBehaviour
         lrManager.lr.SetPosition(0, dragStartPos);
         gameManager.canCollide=false;
         gameManager.LineOpenControl(ballManager.index);
+
+        transform.DOScale(new Vector3(.4f,.4f,.4f),0.2f);
+        StartCoroutine(CheckIfReq());
     }
     private void Dragging()
     {
@@ -98,6 +107,7 @@ public class BallControl : MonoBehaviour
         Vector3 force = dragStartPos - dragReleasePos;
         Vector3 clampedForce = Vector3.ClampMagnitude(force, maxDrag) * power;
         rb.AddForce(clampedForce, ForceMode2D.Impulse);
+        transform.DOScale(new Vector3(.5f,.5f,.5f),0.2f);
         gameManager.canCollide=true;
 
         

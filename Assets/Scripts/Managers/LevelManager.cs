@@ -73,6 +73,13 @@ public class LevelManager : MonoBehaviour
         GameManager.Instance.UpdateRequirement();
         GameManager.Instance.UpdateDoorPosition();
         GameManager.Instance.ResetTheLevel();
+        StartCoroutine(GameEndingTrue());
+        
+    }
+
+    private IEnumerator GameEndingTrue()
+    {
+        yield return new WaitForSeconds(3f);
         GameManager.Instance.isGameEnd=false;
     }
     

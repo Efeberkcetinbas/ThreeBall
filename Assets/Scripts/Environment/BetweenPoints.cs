@@ -5,6 +5,7 @@ using UnityEngine;
 public class BetweenPoints : Obstacleable
 {
     [SerializeField] private int customId;
+    [SerializeField] private ParticleSystem pastEffect;
 
     private GameManager gameManager;
     private CameraManager cameraManager;
@@ -35,6 +36,7 @@ public class BetweenPoints : Obstacleable
             gameManager.canCollide=false;
             lineRenderer.enabled=true;
             StartCoroutine(EnabledFalse());
+            DoPastEffect();
         }
         //gameManager.Door.SetActive(true);
         if(gameManager.RequirementNumber==0 && !gameManager.isGameEnd)
@@ -56,6 +58,11 @@ public class BetweenPoints : Obstacleable
     {
         yield return new WaitForSeconds(1f);
         LevelManager.Instance.LoadNextLevel();
+    }
+
+    private void DoPastEffect()
+    {
+        pastEffect.Play();
     }
     
 }
