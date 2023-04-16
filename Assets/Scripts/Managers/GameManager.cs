@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
@@ -10,6 +10,11 @@ public class GameManager : MonoBehaviour
     public GameObject successPanel;
     public GameObject failPanel;
     public bool isGameEnd=false;
+
+    [Header("Timer")]
+    public bool timerIsRunning=true;
+    public float RemainingTime;
+
     
 
     [Header("Balls")]
@@ -22,10 +27,9 @@ public class GameManager : MonoBehaviour
     [Header("Requirement")]
     public int RequirementNumber;
 
-    //Kaç kez swipelama hakkimiz var
-    public int TurnNumber;
-    //Her levelde ne kadar fazlasinin Turn Number olacagini secebiliyoruz
-    public int IncreaseRightNumber;
+    [Header("Open/Close")]
+    [SerializeField] private GameObject[] open_close;
+
 
     private int tempRequirementNumber;
     private float progressNumber=0;
@@ -61,12 +65,14 @@ public class GameManager : MonoBehaviour
 
     public void ResetTheLevel()
     {
-        successPanel.SetActive(false);
+        ResetSuccessPanel();
+        OpenClose(open_close,true);
         failPanel.SetActive(false);
         UIManager.Instance.UpdateProgressBar(0,0.1f);
         progressNumber=0;
         canCollide=false;
         success=false;
+        timerIsRunning=true;
     }
 
 
@@ -112,14 +118,16 @@ public class GameManager : MonoBehaviour
         ball3.localPosition=Pos3;
     }
 
+    public void UpdateRemainingTime()
+    {
+        RemainingTime=FindObjectOfType<RemainingTimeControl>().RemainingTime;
+    }
+
     public void UpdateRequirement()
     {
         RequirementNumber=FindObjectOfType<RequirementControl>().requirementNumber;
-        IncreaseRightNumber=FindObjectOfType<IncreaseTurnN>().increaseTurnNumber;
         UIManager.Instance.UpdateRequirementText();
         tempRequirementNumber=RequirementNumber;
-        TurnNumber=RequirementNumber+IncreaseRightNumber;
-        UIManager.Instance.UpdateTurnNumberText();        
     }
 
     public void UpdateProgress()
@@ -137,17 +145,84 @@ public class GameManager : MonoBehaviour
         return RequirementNumber;
     }
 
-    public int ChangeTurnNumber(int amount)
+    public void OpenSuccessMenu(bool station)
     {
-        TurnNumber+=amount;
-        UIManager.Instance.UpdateTurnNumberText();
-        return TurnNumber;
+        /*ball1.GetComponent<SpriteRenderer>().color=Color.green;
+        ball2.GetComponent<SpriteRenderer>().color=Color.green;
+        ball3.GetComponent<SpriteRenderer>().color=Color.green;*/
+
+        SoundManager.Instance.Play("success");
+
+        timerIsRunning=false;
+
+        UIManager.Instance.UpdateEndTimer();
+
+        //MoveBallsEnd(new Vector2(0,2),ball1,ball2,ball3);
+
+        OpenClose(open_close,false);
+
+        successPanel.SetActive(station);
+        successPanel.transform.DOScale(Vector2.one*1.15f,0.5f).OnComplete(()=> {
+            successPanel.transform.DOScale(Vector2.one,0.5f);
+            StartCoroutine(OnIncreaseScore());
+        });
     }
 
-    public bool CheckLife()
+
+    IEnumerator OnIncreaseScore()
     {
-        if(TurnNumber-RequirementNumber<0) return false;
-        return true;
+        yield return new WaitForSeconds(2f);
+        //gameData.score += 50;
+        DOTween.To(GetScore,ChangeScore,ScoreManager.Instance.score+Mathf.FloorToInt(RemainingTime),2f).OnUpdate(UpdateUI);
+        DOTween.To(GetTime,ChangeTimer,RemainingTime-RemainingTime,2f).OnUpdate(UpdateTimerUI);
     }
+
+    private int GetScore()
+    {
+        return ScoreManager.Instance.score;
+    }
+
+    private void ChangeScore(int value)
+    {
+        ScoreManager.Instance.score=value;
+    }
+
+    private float GetTime()
+    {
+        return RemainingTime;
+    }
+
+    private void ChangeTimer(float value)
+    {
+        RemainingTime=value;
+    }
+
+    private void UpdateUI()
+    {
+        UIManager.Instance.UpgradeEndScoreText();
+        //SoundManager.Instance.Play("scoreIncrease");
+        
+    }
+
+    private void UpdateTimerUI()
+    {
+        UIManager.Instance.UpdateEndTimer();
+    }
+
+
+    public void ResetSuccessPanel()
+    {
+        successPanel.transform.DOScale(Vector2.zero,0.2f);
+        successPanel.SetActive(false);
+    }
+
+    private void MoveBallsEnd(Vector2 increase,Transform ball1,Transform ball2, Transform ball3)
+    {
+        ball1.DOMove(Vector2.zero,1f);
+        ball2.DOMove(Vector2.zero+increase,1f);
+        ball3.DOMove(Vector2.zero-increase,1f);
+    }
+
+    
 
 }

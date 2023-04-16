@@ -12,13 +12,16 @@ public class UIManager : MonoBehaviour
     [Header("Texts")]
     public TextMeshProUGUI LevelText;
     public TextMeshProUGUI ScoreText;
-    public TextMeshProUGUI RequirementText;
-    public TextMeshProUGUI TurnNumberText;
+    //public TextMeshProUGUI RequirementText;
 
     [Header("Images")]
     public Image progressImage;
 
     public RectTransform fader;
+
+    [Header("Game End")]
+    public TextMeshProUGUI endTimer;
+    public TextMeshProUGUI endScore;
 
 
     void Awake()
@@ -36,16 +39,21 @@ public class UIManager : MonoBehaviour
 
     public void UpgradeLevelText()
     {
-        LevelText.text = (PlayerPrefs.GetInt("RealLevel") + 1).ToString();
+        LevelText.text = "Level " + (PlayerPrefs.GetInt("RealLevel") + 1).ToString() + " Completed";
     }
 
     
 
     public void UpgradeScoreText()
     {
-        ScoreText.text=ScoreManager.Instance.score.ToString();
+        ScoreText.text= ScoreManager.Instance.score.ToString();
     }
 
+    public void UpgradeEndScoreText()
+    {
+        endScore.text= "Score " + ScoreManager.Instance.score.ToString();
+        UpgradeScoreText();
+    }
     public void UpdateProgressBar(float value,float duration)
     {
         progressImage.DOFillAmount(value,duration);
@@ -53,12 +61,12 @@ public class UIManager : MonoBehaviour
 
     public void UpdateRequirementText()
     {
-        RequirementText.text=GameManager.Instance.RequirementNumber.ToString();
+        //RequirementText.text=GameManager.Instance.RequirementNumber.ToString();
     }
 
-    public void UpdateTurnNumberText()
+    public void UpdateEndTimer()
     {
-        TurnNumberText.text=GameManager.Instance.TurnNumber.ToString();
+        endTimer.text="+ " + Mathf.FloorToInt(GameManager.Instance.RemainingTime).ToString();
     }
 
     public void StartFader()

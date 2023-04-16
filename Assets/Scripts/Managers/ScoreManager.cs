@@ -20,6 +20,11 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
+    private void Start() 
+    {
+        score=PlayerPrefs.GetInt("Score");
+    }
+
 
     public void UpdateScore(int increaseScore)
     {

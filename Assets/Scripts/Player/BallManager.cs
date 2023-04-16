@@ -7,6 +7,8 @@ public class BallManager : MonoBehaviour
     public List<GameObject> balls=new List<GameObject>();
 
     public int index;
+
+    public Color activeColor,deActiveColor;
     
 
     private void Start()
@@ -19,12 +21,13 @@ public class BallManager : MonoBehaviour
         for (int i = 0; i < balls.Count; i++)
         {
             balls[i].transform.GetChild(0).gameObject.SetActive(false);
-            balls[i].transform.GetComponent<SpriteRenderer>().color=Color.red;
+            
+            balls[i].transform.GetComponent<SpriteRenderer>().color=deActiveColor;
             balls[i].GetComponent<BallControl>().canShoot=false;    
         }
         
         //balls[index].transform.GetChild(0).gameObject.SetActive(true);
-        balls[index].transform.GetComponent<SpriteRenderer>().color=Color.green;
+        balls[index].transform.GetComponent<SpriteRenderer>().color=activeColor;
         balls[index].GetComponent<BallControl>().canShoot=true;    
         //GameManager.Instance.LineOpenControl(index);
     }

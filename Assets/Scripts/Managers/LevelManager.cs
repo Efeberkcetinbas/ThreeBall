@@ -48,12 +48,15 @@ public class LevelManager : MonoBehaviour
 
         
         //ScoreManager.Instance.score=PlayerPrefs.GetInt("Score");
-        //UIManager.Instance.UpgradeScoreText();
+        UIManager.Instance.UpgradeScoreText();
         GameManager.Instance.UpdateBallsPositions();
         GameManager.Instance.UpdateRequirement();
         GameManager.Instance.UpdateDoorPosition();
+        GameManager.Instance.UpdateRemainingTime();
         GameManager.Instance.ResetTheLevel();
         GameManager.Instance.isGameEnd=false;
+
+        
         
         
         
@@ -63,6 +66,7 @@ public class LevelManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("LevelNumber", levelIndex + 1);
         PlayerPrefs.SetInt("RealLevel", PlayerPrefs.GetInt("RealLevel", 0) + 1);
+        SoundManager.Instance.Play("nextLevel");
         LoadLevel();
     }
 

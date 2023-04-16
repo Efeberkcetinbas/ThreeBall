@@ -40,24 +40,13 @@ public class BallControl : MonoBehaviour
     {
         if(!GameManager.Instance.isGameEnd)
         {
-            
             if(canShoot)
                 DragControl();
         }
             
     }
 
-    //Hemen cagiriyor bu yuzden sonuclanmadan direk oluyor
-    private IEnumerator CheckIfReq()
-    {
-        yield return null;
-        if(gameManager.CheckLife()==false)
-        {
-            gameManager.isGameEnd=true;
-            levelManager.RestartLevel();
-            Debug.Log("NO RIGHT TO USE IT");
-        }
-    }
+    
 
     private void DragControl()
     {
@@ -88,7 +77,6 @@ public class BallControl : MonoBehaviour
         gameManager.LineOpenControl(ballManager.index);
 
         transform.DOScale(new Vector3(.4f,.4f,.4f),0.2f);
-        StartCoroutine(CheckIfReq());
     }
     private void Dragging()
     {
@@ -109,19 +97,12 @@ public class BallControl : MonoBehaviour
         rb.AddForce(clampedForce, ForceMode2D.Impulse);
         transform.DOScale(new Vector3(.5f,.5f,.5f),0.2f);
         gameManager.canCollide=true;
+        SoundManager.Instance.Play("Release");
 
         
 
-        if(gameManager.TurnNumber==0 && !gameManager.success) 
-        {
-            gameManager.isGameEnd=true;
-            levelManager.RestartLevel();
-            Debug.Log("FAILLLL");
-        }
-        else
-        {
-            gameManager.ChangeTurnNumber(-1);
-        }
+        
+        
         StartCoroutine(Call());
     }
 
