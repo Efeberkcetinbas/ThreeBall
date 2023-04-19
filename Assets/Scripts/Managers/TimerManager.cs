@@ -11,20 +11,6 @@ public class TimerManager : MonoBehaviour
 
     private bool oneTime=false;
 
-    public static TimerManager Instance;
-
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-    
 
     void ScaleUpText()
     {

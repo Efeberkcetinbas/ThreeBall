@@ -51,7 +51,7 @@ public class LevelManager : MonoBehaviour
         UIManager.Instance.UpgradeScoreText();
         GameManager.Instance.UpdateBallsPositions();
         GameManager.Instance.UpdateRequirement();
-        GameManager.Instance.UpdateDoorPosition();
+        //GameManager.Instance.UpdateDoorPosition();
         GameManager.Instance.UpdateRemainingTime();
         GameManager.Instance.ResetTheLevel();
         GameManager.Instance.isGameEnd=false;
@@ -75,7 +75,7 @@ public class LevelManager : MonoBehaviour
         UIManager.Instance.StartFader();
         GameManager.Instance.UpdateBallsPositions();
         GameManager.Instance.UpdateRequirement();
-        GameManager.Instance.UpdateDoorPosition();
+        //GameManager.Instance.UpdateDoorPosition();
         GameManager.Instance.ResetTheLevel();
         StartCoroutine(GameEndingTrue());
         

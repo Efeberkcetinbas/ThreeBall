@@ -39,9 +39,9 @@ public class GameManager : MonoBehaviour
     public bool canCollide=false;
     public bool success=false;
 
-    [Header("Door Control")]
+    /*[Header("Door Control")]
     public GameObject Door;
-    internal Transform DoorTransform;
+    internal Transform DoorTransform;*/
 
     [Header("Scripts")]
     public BallManager ballManager;
@@ -73,6 +73,8 @@ public class GameManager : MonoBehaviour
         canCollide=false;
         success=false;
         timerIsRunning=true;
+        UIManager.Instance.SuccessButton.transform.DOScale(Vector3.zero,0.1f).OnComplete(()=>UIManager.Instance.SuccessButton.SetActive(false));
+        
     }
 
 
@@ -97,12 +99,12 @@ public class GameManager : MonoBehaviour
         LinesCol[selected].SetActive(true);
     }
 
-    public void UpdateDoorPosition()
+    /*public void UpdateDoorPosition()
     {
         DoorTransform=FindObjectOfType<DoorPosition>().doorPos;
         Door.transform.position=DoorTransform.position;
         Door.SetActive(false);
-    }
+    }*/
 
     public void UpdateBallsPositions()
     {
@@ -174,7 +176,11 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         //gameData.score += 50;
         DOTween.To(GetScore,ChangeScore,ScoreManager.Instance.score+Mathf.FloorToInt(RemainingTime),2f).OnUpdate(UpdateUI);
-        DOTween.To(GetTime,ChangeTimer,RemainingTime-RemainingTime,2f).OnUpdate(UpdateTimerUI);
+        DOTween.To(GetTime,ChangeTimer,RemainingTime-RemainingTime,2f).OnUpdate(UpdateTimerUI).OnComplete(()=>
+        {
+            UIManager.Instance.SuccessButton.SetActive(true);
+            UIManager.Instance.SuccessButton.transform.DOScale(Vector3.one,0.5f);
+        });
     }
 
     private int GetScore()

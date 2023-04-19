@@ -23,6 +23,8 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI endTimer;
     public TextMeshProUGUI endScore;
 
+    public GameObject SuccessButton;
+
 
     void Awake()
     {
