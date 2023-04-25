@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
 
     [Header("Images")]
     public Image progressImage;
+    public Image timerImage;
 
     public RectTransform fader;
 
@@ -64,6 +65,11 @@ public class UIManager : MonoBehaviour
     public void UpdateRequirementText()
     {
         //RequirementText.text=GameManager.Instance.RequirementNumber.ToString();
+    }
+
+    public void UpdateTimerCounter(float temp)
+    {
+        timerImage.fillAmount=GameManager.Instance.RemainingTime/temp;
     }
 
     public void UpdateEndTimer()

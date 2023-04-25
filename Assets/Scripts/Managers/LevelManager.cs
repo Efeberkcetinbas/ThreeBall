@@ -55,6 +55,7 @@ public class LevelManager : MonoBehaviour
         GameManager.Instance.UpdateRemainingTime();
         GameManager.Instance.ResetTheLevel();
         GameManager.Instance.isGameEnd=false;
+        TimerManager.Instance.UpdateTempRemaining();
 
         
         
