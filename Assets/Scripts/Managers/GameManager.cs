@@ -72,9 +72,14 @@ public class GameManager : MonoBehaviour
         progressNumber=0;
         canCollide=false;
         success=false;
-        timerIsRunning=true;
         UIManager.Instance.SuccessButton.transform.DOScale(Vector3.zero,0.1f).OnComplete(()=>UIManager.Instance.SuccessButton.SetActive(false));
         
+    }
+
+    public IEnumerator SetTimerStart()
+    {
+        yield return new WaitForSeconds(1);
+        timerIsRunning=true;
     }
 
 
@@ -149,9 +154,6 @@ public class GameManager : MonoBehaviour
 
     public void OpenSuccessMenu(bool station)
     {
-        /*ball1.GetComponent<SpriteRenderer>().color=Color.green;
-        ball2.GetComponent<SpriteRenderer>().color=Color.green;
-        ball3.GetComponent<SpriteRenderer>().color=Color.green;*/
 
         SoundManager.Instance.Play("success");
 
@@ -159,14 +161,20 @@ public class GameManager : MonoBehaviour
 
         UIManager.Instance.UpdateEndTimer();
 
-        //MoveBallsEnd(new Vector2(0,2),ball1,ball2,ball3);
-
         OpenClose(open_close,false);
 
         successPanel.SetActive(station);
         successPanel.transform.DOScale(Vector2.one*1.15f,0.5f).OnComplete(()=> {
             successPanel.transform.DOScale(Vector2.one,0.5f);
             StartCoroutine(OnIncreaseScore());
+        });
+    }
+
+    public void OpenFailMenu()
+    {
+        failPanel.SetActive(true);
+        failPanel.transform.DOScale(Vector2.one*1.15f,0.5f).OnComplete(()=> {
+            failPanel.transform.DOScale(Vector2.one,0.5f);
         });
     }
 

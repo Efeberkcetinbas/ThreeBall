@@ -48,14 +48,17 @@ public class LevelManager : MonoBehaviour
 
         
         //ScoreManager.Instance.score=PlayerPrefs.GetInt("Score");
+        GameManager.Instance.UpdateRemainingTime();
+        TimerManager.Instance.UpdateTempRemaining();
+        TimerManager.Instance.DisplayCounterClock();
+        GameManager.Instance.StartCoroutine(GameManager.Instance.SetTimerStart());
+
         UIManager.Instance.UpgradeScoreText();
         GameManager.Instance.UpdateBallsPositions();
         GameManager.Instance.UpdateRequirement();
         //GameManager.Instance.UpdateDoorPosition();
-        GameManager.Instance.UpdateRemainingTime();
         GameManager.Instance.ResetTheLevel();
         GameManager.Instance.isGameEnd=false;
-        TimerManager.Instance.UpdateTempRemaining();
 
         
         
@@ -78,6 +81,7 @@ public class LevelManager : MonoBehaviour
         GameManager.Instance.UpdateRequirement();
         //GameManager.Instance.UpdateDoorPosition();
         GameManager.Instance.ResetTheLevel();
+        LoadLevel();
         StartCoroutine(GameEndingTrue());
         
     }

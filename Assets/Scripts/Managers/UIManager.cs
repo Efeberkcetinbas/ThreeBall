@@ -81,8 +81,8 @@ public class UIManager : MonoBehaviour
     {
         fader.gameObject.SetActive(true);
 
-        fader.DOScale(new Vector3(3,3,3),1).OnComplete(()=>{
-            fader.DOScale(Vector3.zero,1f).OnComplete(()=>fader.gameObject.SetActive(false));
+        fader.DOScale(new Vector3(3,3,3),0.75f).OnComplete(()=>{
+            fader.DOScale(Vector3.zero,0.75f).OnComplete(()=>fader.gameObject.SetActive(false));
         });
     }
 }

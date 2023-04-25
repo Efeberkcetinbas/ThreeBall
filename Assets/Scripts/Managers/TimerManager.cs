@@ -10,7 +10,6 @@ public class TimerManager : MonoBehaviour
     public TextMeshProUGUI timeText;
     public GameManager gameManager;
 
-    private bool oneTime=false;
 
     private float tempRemainingTime;
 
@@ -50,14 +49,12 @@ public class TimerManager : MonoBehaviour
             else
             {
                 gameManager.RemainingTime = 0;
+                gameManager.OpenFailMenu();
+
                 gameManager.timerIsRunning = false;
                 DisplayCounterClock();
                 //DisplayTime(gameManager.RemainingTime);
-                Time.timeScale = 0f;
-                oneTime=true;
-                if(oneTime)
-                    Debug.Log("FAILLL");
-                //bu durumda ise ana menuye dönücek.
+                //Time.timeScale = 0f;
             }
         }
     }
@@ -73,7 +70,7 @@ public class TimerManager : MonoBehaviour
 
     }
 
-    void DisplayCounterClock()
+    public void DisplayCounterClock()
     {
         UIManager.Instance.UpdateTimerCounter(tempRemainingTime);
     }

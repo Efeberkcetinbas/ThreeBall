@@ -3383,7 +3383,7 @@ MonoBehaviour:
   successPanel: {fileID: 959976995}
   failPanel: {fileID: 2058864054}
   isGameEnd: 0
-  timerIsRunning: 1
+  timerIsRunning: 0
   RemainingTime: 0
   ball1: {fileID: 1919402814}
   ball2: {fileID: 1896292329}
@@ -3399,6 +3399,8 @@ MonoBehaviour:
   - {fileID: 1576653309}
   - {fileID: 1321238615}
   - {fileID: 775815627}
+  - {fileID: 1184247914}
+  - {fileID: 1394981642}
   LinesCol:
   - {fileID: 914778789}
   - {fileID: 1647825920}
@@ -4323,7 +4325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.7001362, b: 0, a: 1}
+  m_Color: {r: 0.2855148, g: 0.8962264, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4627,6 +4629,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 986945780}
     - target: {fileID: 8494915756850503884, guid: e65051af423e62349815b216211558d9, type: 3}
+      propertyPath: m_Time
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8494915756850503884, guid: e65051af423e62349815b216211558d9, type: 3}
+      propertyPath: m_MinVertexDistance
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8494915756850503884, guid: e65051af423e62349815b216211558d9, type: 3}
+      propertyPath: m_Parameters.widthMultiplier
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8494915756850503884, guid: e65051af423e62349815b216211558d9, type: 3}
       propertyPath: m_Parameters.colorGradient.key0.b
       value: 1
       objectReference: {fileID: 0}
@@ -4816,7 +4830,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.4117647}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5990,6 +6004,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 986945780}
     - target: {fileID: 8494915756850503884, guid: e65051af423e62349815b216211558d9, type: 3}
+      propertyPath: m_Time
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8494915756850503884, guid: e65051af423e62349815b216211558d9, type: 3}
+      propertyPath: m_MinVertexDistance
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8494915756850503884, guid: e65051af423e62349815b216211558d9, type: 3}
+      propertyPath: m_Parameters.widthMultiplier
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8494915756850503884, guid: e65051af423e62349815b216211558d9, type: 3}
       propertyPath: m_Parameters.colorGradient.key0.b
       value: 1
       objectReference: {fileID: 0}
@@ -6908,6 +6934,18 @@ PrefabInstance:
     - target: {fileID: 8162669814675186276, guid: e65051af423e62349815b216211558d9, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8494915756850503884, guid: e65051af423e62349815b216211558d9, type: 3}
+      propertyPath: m_Time
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8494915756850503884, guid: e65051af423e62349815b216211558d9, type: 3}
+      propertyPath: m_MinVertexDistance
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8494915756850503884, guid: e65051af423e62349815b216211558d9, type: 3}
+      propertyPath: m_Parameters.widthMultiplier
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 8494915756850503884, guid: e65051af423e62349815b216211558d9, type: 3}
       propertyPath: m_Parameters.colorGradient.key0.b
