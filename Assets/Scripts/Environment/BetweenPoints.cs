@@ -41,6 +41,8 @@ public class BetweenPoints : Obstacleable
             gameManager.ChangeRequirement(-1);
             gameManager.UpdateProgress();
             cameraManager.ShakeIt();
+            cameraManager.ChangeFieldOfViewHit(4f,5f,1f);
+            EventManager.Broadcast(GameEvent.OnHitBoss);
             soundManager.Play("Tick");
             gameManager.canCollide=false;
             lineRenderer.enabled=true;

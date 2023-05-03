@@ -34,9 +34,20 @@ public class CameraManager : MonoBehaviour
     }
 
     
+    //Boss oldugunde
     public void ChangeFieldOfView(float fieldOfView, float duration = 1)
     {
         DOTween.To(() => cm.m_Lens.FieldOfView, x => cm.m_Lens.FieldOfView = x, fieldOfView, duration);
+    }
+
+    
+
+    //Hit Effect
+    public void ChangeFieldOfViewHit(float newFieldOfView, float oldFieldOfView, float duration = 1)
+    {
+        DOTween.To(() => mainCamera.fieldOfView, x => mainCamera.fieldOfView = x, newFieldOfView, duration).OnComplete(()=>{
+            DOTween.To(() => mainCamera.fieldOfView, x => mainCamera.fieldOfView = x, oldFieldOfView, duration);
+        });
     }
    
     public void ResetCamera(int resetAmount)
