@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using TMPro;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
@@ -13,7 +14,12 @@ public class GameManager : MonoBehaviour
 
     [Header("Timer")]
     public bool timerIsRunning=true;
+    public bool canCombo;
     public float RemainingTime;
+    public float comboTime;
+    public int comboAmount;
+    public TextMeshProUGUI comboText;
+
 
     
 
@@ -26,6 +32,8 @@ public class GameManager : MonoBehaviour
 
     [Header("Requirement")]
     public int RequirementNumber;
+    [Header("Incremental")]
+    public int AmounOfIncrease=1;
 
     [Header("Open/Close")]
     [SerializeField] private GameObject[] open_close;
@@ -39,6 +47,7 @@ public class GameManager : MonoBehaviour
     public bool canCollide=false;
     public bool success=false;
     public bool isWall=false;
+
 
     public ParticleSystem[] fireworks;
 

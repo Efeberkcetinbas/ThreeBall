@@ -71,6 +71,7 @@ public class LevelManager : MonoBehaviour
         PlayerPrefs.SetInt("LevelNumber", levelIndex + 1);
         PlayerPrefs.SetInt("RealLevel", PlayerPrefs.GetInt("RealLevel", 0) + 1);
         SoundManager.Instance.Play("nextLevel");
+        EventManager.Broadcast(GameEvent.OnNextLevel);
         LoadLevel();
     }
 

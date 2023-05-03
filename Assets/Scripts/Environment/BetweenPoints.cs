@@ -43,8 +43,27 @@ public class BetweenPoints : Obstacleable
             cameraManager.ShakeIt();
             cameraManager.ChangeFieldOfViewHit(4f,5f,1f);
             EventManager.Broadcast(GameEvent.OnHitBoss);
-            if(GameManager.Instance.isWall)
-                GameManager.Instance.PlayFireWorks();
+            if(gameManager.isWall)
+                gameManager.PlayFireWorks();
+            
+            gameManager.canCombo=true;
+            gameManager.comboTime=3;
+
+            if(gameManager.canCombo)
+            {
+                if(gameManager.comboAmount>1)
+                {
+                    gameManager.comboText.gameObject.SetActive(true);
+                    gameManager.comboText.transform.localScale=Vector3.zero;
+                    gameManager.comboText.transform.DOScale(Vector3.one*2f,0.2f).OnComplete(()=>{
+                        gameManager.comboText.transform.DOScale(Vector3.one*1.25f,0.2f).OnComplete(()=>gameManager.comboText.gameObject.SetActive(false));
+                    });
+                }
+                
+                gameManager.comboAmount++;
+                gameManager.comboText.SetText("x " + gameManager.comboAmount.ToString());
+            }
+            
             soundManager.Play("Tick");
             gameManager.canCollide=false;
             lineRenderer.enabled=true;
@@ -77,7 +96,8 @@ public class BetweenPoints : Obstacleable
     {
         GameObject coin=Instantiate(increaseScorePrefab,pointPos.transform.position,increaseScorePrefab.transform.rotation);
         coin.transform.DOLocalJump(coin.transform.localPosition,1,1,1,false);
-        coin.transform.GetChild(0).GetComponent<TextMeshPro>().text=" + " + 1.ToString();
+        coin.transform.GetChild(0).GetComponent<TextMeshPro>().text=" + " + (GameManager.Instance.AmounOfIncrease+GameManager.Instance.comboAmount).ToString();
+        coin.transform.GetChild(1).GetComponent<SpriteRenderer>().DOFade(0,1.5f).OnComplete(()=>coin.transform.GetChild(0).gameObject.SetActive(false));
         coin.transform.GetChild(0).GetComponent<TextMeshPro>().DOFade(0,1.5f).OnComplete(()=>coin.transform.GetChild(0).gameObject.SetActive(false));
         Destroy(coin,2);
     } 

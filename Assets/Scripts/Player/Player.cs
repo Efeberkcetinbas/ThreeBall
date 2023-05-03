@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
 
     private int randomIndex;
     public ParticleSystem particle;
+    public ParticleSystem leaveParticle;
 
     public List<Sprite> sprites=new List<Sprite>();
 

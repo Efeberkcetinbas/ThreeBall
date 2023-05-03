@@ -44,6 +44,7 @@ public class TimerManager : MonoBehaviour
                 gameManager.RemainingTime -= Time.deltaTime;
                 //DisplayTime(gameManager.RemainingTime);
                 DisplayCounterClock();
+                ComboControl();
                 //O dan büyükse azaltıyor.
             }
             else
@@ -68,6 +69,20 @@ public class TimerManager : MonoBehaviour
 
         timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds); //dakika saniye cinsinden gösteriyor.
 
+    }
+
+    private void ComboControl()
+    {
+        if(gameManager.canCombo)
+            gameManager.comboTime-=Time.deltaTime;
+        
+        if(gameManager.comboTime<0)
+        {
+            gameManager.canCombo=false;
+            gameManager.comboTime=0;
+            gameManager.comboAmount=0;
+            gameManager.comboText.gameObject.SetActive(false);
+        }
     }
 
     public void DisplayCounterClock()

@@ -27,7 +27,7 @@ public class BallManager : MonoBehaviour
         }
         
         balls[index].transform.GetChild(0).gameObject.SetActive(true);
-        balls[index].transform.GetChild(0).transform.DOScale(Vector3.one*1.5f,0.5f);
+        balls[index].transform.GetChild(0).transform.DOScale(Vector3.one,0.5f);
         balls[index].transform.GetComponent<SpriteRenderer>().color=activeColor;
         balls[index].GetComponent<BallControl>().canShoot=true;    
         //GameManager.Instance.LineOpenControl(index);

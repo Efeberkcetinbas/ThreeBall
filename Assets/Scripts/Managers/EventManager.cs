@@ -5,7 +5,8 @@ using UnityEngine;
 
 public enum GameEvent
 {
-    OnHitBoss
+    OnHitBoss,
+    OnNextLevel
     
 
 }
