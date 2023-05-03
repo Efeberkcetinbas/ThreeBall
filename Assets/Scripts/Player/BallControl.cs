@@ -75,7 +75,6 @@ public class BallControl : MonoBehaviour
         lrManager.lr.SetPosition(0, dragStartPos);
         gameManager.canCollide=false;
         gameManager.LineOpenControl(ballManager.index);
-
         transform.DOScale(new Vector3(.4f,.4f,.4f),0.2f);
     }
     private void Dragging()
@@ -91,6 +90,7 @@ public class BallControl : MonoBehaviour
 
         Vector3 dragReleasePos = cm.ScreenToWorldPoint(touch.position);
         dragStartPos.z = 0f;
+        GameManager.Instance.isWall=false;
 
         Vector3 force = dragStartPos - dragReleasePos;
         Vector3 clampedForce = Vector3.ClampMagnitude(force, maxDrag) * power;

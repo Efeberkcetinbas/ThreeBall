@@ -43,6 +43,8 @@ public class BetweenPoints : Obstacleable
             cameraManager.ShakeIt();
             cameraManager.ChangeFieldOfViewHit(4f,5f,1f);
             EventManager.Broadcast(GameEvent.OnHitBoss);
+            if(GameManager.Instance.isWall)
+                GameManager.Instance.PlayFireWorks();
             soundManager.Play("Tick");
             gameManager.canCollide=false;
             lineRenderer.enabled=true;

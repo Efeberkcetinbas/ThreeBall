@@ -38,6 +38,9 @@ public class GameManager : MonoBehaviour
     public List<GameObject> LinesCol=new List<GameObject>(); 
     public bool canCollide=false;
     public bool success=false;
+    public bool isWall=false;
+
+    public ParticleSystem[] fireworks;
 
     /*[Header("Door Control")]
     public GameObject Door;
@@ -62,6 +65,13 @@ public class GameManager : MonoBehaviour
         Application.targetFrameRate=60;
     }
 
+    public void PlayFireWorks()
+    {
+        for (int i = 0; i < fireworks.Length; i++)
+        {
+            fireworks[i].Play();
+        }
+    }
 
     public void ResetTheLevel()
     {
