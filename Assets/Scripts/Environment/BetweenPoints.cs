@@ -66,9 +66,9 @@ public class BetweenPoints : Obstacleable
             
             soundManager.Play("Tick");
             gameManager.canCollide=false;
-            lineRenderer.enabled=true;
+            //lineRenderer.enabled=true;
             player.particle.Play();
-            StartCoroutine(EnabledFalse());
+            //StartCoroutine(EnabledFalse());
         }
         //gameManager.Door.SetActive(true);
         if(gameManager.RequirementNumber==0 && !gameManager.isGameEnd)

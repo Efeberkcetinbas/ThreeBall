@@ -32,10 +32,26 @@ public class BallControl : MonoBehaviour
         lrManager=FindObjectOfType<LineRendererManager>();
         gameManager=GameManager.Instance;
         levelManager=LevelManager.Instance;
-
-
     }
-   
+    
+    private void OnEnable() 
+    {
+        EventManager.AddHandler(GameEvent.OnNextLevel,StopSpinning);
+        
+    }
+
+    private void OnDisable() 
+    {
+        EventManager.RemoveHandler(GameEvent.OnNextLevel,StopSpinning);
+    }
+
+    private void StopSpinning()
+    {
+        rb.constraints=RigidbodyConstraints2D.FreezeRotation;
+    }
+
+
+
     private void Update()
     {
         if(!GameManager.Instance.isGameEnd)
@@ -70,6 +86,7 @@ public class BallControl : MonoBehaviour
     private void DragStart()
     {
         dragStartPos = cm.ScreenToWorldPoint(touch.position);
+        rb.constraints=RigidbodyConstraints2D.None;
         dragStartPos.z = 0f;
         lrManager.lr.positionCount = 1;
         lrManager.lr.SetPosition(0, dragStartPos);
