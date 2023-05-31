@@ -51,14 +51,14 @@ public class LevelManager : MonoBehaviour
         GameManager.Instance.UpdateRemainingTime();
         TimerManager.Instance.UpdateTempRemaining();
         TimerManager.Instance.DisplayCounterClock();
-        GameManager.Instance.StartCoroutine(GameManager.Instance.SetTimerStart());
+        //GameManager.Instance.StartCoroutine(GameManager.Instance.SetTimerStart());
 
         UIManager.Instance.UpgradeScoreText();
         GameManager.Instance.UpdateBallsPositions();
         GameManager.Instance.UpdateRequirement();
         //GameManager.Instance.UpdateDoorPosition();
         GameManager.Instance.ResetTheLevel();
-        GameManager.Instance.isGameEnd=false;
+        //GameManager.Instance.isGameEnd=false;
 
         
         

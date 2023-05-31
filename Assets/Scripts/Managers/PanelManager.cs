@@ -12,9 +12,25 @@ public class PanelManager : MonoBehaviour
 
     [SerializeField] private SoundManager soundManager;
 
+    public bool oneTime=true;
+
     private void Start() 
     {
         soundManager=SoundManager.Instance;
+    }
+
+    private void Update() 
+    {
+        if(oneTime)
+        {
+            if(Input.touchCount>=1)
+            {
+                GameManager.Instance.StartCoroutine(GameManager.Instance.SetTimerStart());
+                GameManager.Instance.isGameEnd=false;
+                StartPanel.gameObject.SetActive(false);
+                oneTime=false;
+            }
+        }
     }
 
 

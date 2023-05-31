@@ -10,7 +10,7 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance;
 
     [Header("Texts")]
-    public TextMeshProUGUI LevelText;
+    public TextMeshProUGUI[] LevelText;
     public TextMeshProUGUI ScoreText;
     //public TextMeshProUGUI RequirementText;
 
@@ -42,7 +42,8 @@ public class UIManager : MonoBehaviour
 
     public void UpgradeLevelText()
     {
-        LevelText.text = "Level " + (PlayerPrefs.GetInt("RealLevel") + 1).ToString() + " Completed";
+        LevelText[0].text = "Level " + (PlayerPrefs.GetInt("RealLevel") + 1).ToString() + " Completed";
+        LevelText[1].text = "Level " + (PlayerPrefs.GetInt("RealLevel") + 1).ToString();
     }
 
     
