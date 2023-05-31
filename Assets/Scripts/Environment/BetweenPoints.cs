@@ -99,7 +99,7 @@ public class BetweenPoints : Obstacleable
 
     private IEnumerator OpenSuccess()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(4);
         gameManager.OpenSuccessMenu(true);
     }
 

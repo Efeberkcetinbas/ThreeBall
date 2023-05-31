@@ -61,7 +61,7 @@ public class CameraManager : MonoBehaviour
 
     private void OnSpawnWeapon()
     {
-        Noise(5,5,0.1f);
+        Noise(1,1,0.1f);
     }
 
     private void OnBossDie()

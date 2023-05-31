@@ -7,6 +7,8 @@ public class SpawnWeapon : MonoBehaviour
 {
     [SerializeField] private Transform Boss;
     [SerializeField] private GameObject Weapon;
+
+    
     private void OnEnable() 
     {
         EventManager.AddHandler(GameEvent.OnSpawnWeapon,OnSpawnWeapon);
@@ -25,4 +27,6 @@ public class SpawnWeapon : MonoBehaviour
             Destroy(weap);
         });
     }
+
+   
 }
