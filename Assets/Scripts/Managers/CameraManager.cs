@@ -12,6 +12,7 @@ public class CameraManager : MonoBehaviour
     public Camera mainCamera;
 
     public Transform cmCamera;
+    public Transform player,boss;
 
 
     Vector3 cameraInitialPosition;
@@ -40,17 +41,47 @@ public class CameraManager : MonoBehaviour
     private void OnEnable() 
     {
         EventManager.AddHandler(GameEvent.OnHitBoss,OnHitBoss);
+        EventManager.AddHandler(GameEvent.OnSpawnWeapon,OnSpawnWeapon);
+        EventManager.AddHandler(GameEvent.OnBossDie,OnBossDie);
+        EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
     }
 
     private void OnDisable() 
     {
         EventManager.RemoveHandler(GameEvent.OnHitBoss,OnHitBoss);
+        EventManager.RemoveHandler(GameEvent.OnSpawnWeapon,OnSpawnWeapon);
+        EventManager.RemoveHandler(GameEvent.OnBossDie,OnBossDie);
+        EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
     }
 
     private void OnHitBoss()
     {
-        Noise();
-        Debug.Log("WORK");
+        Noise(amplitudeGain,frequencyGain,shakeTime);
+    }
+
+    private void OnSpawnWeapon()
+    {
+        Noise(5,5,0.1f);
+    }
+
+    private void OnBossDie()
+    {
+        Noise(1,1,3);
+        cm.Follow=boss;
+        ChangeFieldOfView(3,1);
+        StartCoroutine(CallParticleBroadcast());
+    }
+
+    private void OnNextLevel()
+    {
+        cm.Follow=player;
+        ChangeFieldOfView(5,0.1f);
+    }
+
+    private IEnumerator CallParticleBroadcast()
+    {
+        yield return new WaitForSeconds(1);
+        EventManager.Broadcast(GameEvent.OnBossDieParticle);
     }
 
     private void Start() 
@@ -62,7 +93,7 @@ public class CameraManager : MonoBehaviour
             Debug.Log($"Noise Component: {noise}");
     }
 
-    private void Noise() 
+    private void Noise(float amplitudeGain,float frequencyGain,float shakeTime) 
     {
         noise.m_AmplitudeGain = amplitudeGain;
         noise.m_FrequencyGain = frequencyGain;
@@ -78,7 +109,7 @@ public class CameraManager : MonoBehaviour
     //Boss oldugunde
     public void ChangeFieldOfView(float fieldOfView, float duration = 1)
     {
-        DOTween.To(() => cm.m_Lens.FieldOfView, x => cm.m_Lens.FieldOfView = x, fieldOfView, duration);
+        DOTween.To(() => cm.m_Lens.OrthographicSize, x => cm.m_Lens.OrthographicSize = x, fieldOfView, duration);
     }
 
     

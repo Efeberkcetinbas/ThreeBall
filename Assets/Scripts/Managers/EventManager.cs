@@ -6,6 +6,8 @@ using UnityEngine;
 public enum GameEvent
 {
     OnHitBoss,
+    OnBossDie,
+    OnBossDieParticle,
     OnSpawnWeapon,
     OnNextLevel
     

@@ -52,6 +52,7 @@ public class BetweenPoints : Obstacleable
         {
             gameManager.success=true;
             gameManager.isGameEnd=true;
+            EventManager.Broadcast(GameEvent.OnBossDie);
             //Burada success menu ac
             StartCoroutine(OpenSuccess());
         }

@@ -58,7 +58,7 @@ public class LevelManager : MonoBehaviour
         GameManager.Instance.UpdateRequirement();
         //GameManager.Instance.UpdateDoorPosition();
         GameManager.Instance.ResetTheLevel();
-        //GameManager.Instance.isGameEnd=false;
+        GameManager.Instance.isGameEnd=false;
 
         
         
