@@ -32,7 +32,7 @@ public class LevelManager : MonoBehaviour
     private void LoadLevel()
     {
 
-        UIManager.Instance.StartFader();
+        //UIManager.Instance.StartFader();
 
         levelIndex = PlayerPrefs.GetInt("LevelNumber");
         if (levelIndex == levels.Count) levelIndex = 0;
@@ -58,7 +58,7 @@ public class LevelManager : MonoBehaviour
         GameManager.Instance.UpdateRequirement();
         //GameManager.Instance.UpdateDoorPosition();
         GameManager.Instance.ResetTheLevel();
-        GameManager.Instance.isGameEnd=false;
+        //GameManager.Instance.isGameEnd=false;
 
         
         
@@ -77,7 +77,7 @@ public class LevelManager : MonoBehaviour
 
     public void RestartLevel()
     {
-        UIManager.Instance.StartFader();
+        //UIManager.Instance.StartFader();
         GameManager.Instance.UpdateBallsPositions();
         GameManager.Instance.UpdateRequirement();
         //GameManager.Instance.UpdateDoorPosition();

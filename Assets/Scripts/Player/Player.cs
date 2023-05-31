@@ -16,17 +16,17 @@ public class Player : MonoBehaviour
     private void Start() 
     {
         spriteRenderer=GetComponent<SpriteRenderer>();
-        MakeRandomSprite(spriteRenderer);
+        //MakeRandomSprite(spriteRenderer);
     }
 
     private void OnEnable() 
     {
-        EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);   
+        //EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);   
     }
 
     private void OnDisable() 
     {
-        EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
+        //EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
     }
 
     private void OnNextLevel()

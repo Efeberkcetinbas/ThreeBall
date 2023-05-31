@@ -32,17 +32,39 @@ public class BetweenPoints : Obstacleable
     {
         interactionTag="Ball";
     }
+
+    private void OnEnable() 
+    {
+        EventManager.AddHandler(GameEvent.OnHitBoss,OnHitBoss);    
+    }
+
+    private void OnDisable() 
+    {
+        EventManager.RemoveHandler(GameEvent.OnHitBoss,OnHitBoss);
+    }
+
+    private void OnHitBoss()
+    {
+        gameManager.ChangeRequirement(-1);
+        gameManager.UpdateProgress();
+
+        if(gameManager.RequirementNumber==0 && !gameManager.isGameEnd)
+        {
+            gameManager.success=true;
+            gameManager.isGameEnd=true;
+            //Burada success menu ac
+            StartCoroutine(OpenSuccess());
+        }
+    }
     internal override void DoAction(Player player)
     {
         if(gameManager.canCollide && customId==player.id && gameManager.RequirementNumber>0 && !gameManager.isGameEnd)
         {
             StartPointMove();
             scoreManager.UpdateScore(+1);
-            gameManager.ChangeRequirement(-1);
-            gameManager.UpdateProgress();
-            cameraManager.ShakeIt();
-            cameraManager.ChangeFieldOfViewHit(4f,5f,1f);
-            EventManager.Broadcast(GameEvent.OnHitBoss);
+            
+            //Burada OnSpawnWeapon Cagiririz. O weapon boss'a gittiginde On HitBoss Cagiririz.
+            EventManager.Broadcast(GameEvent.OnSpawnWeapon);
             if(gameManager.isWall)
                 gameManager.PlayFireWorks();
             
@@ -71,13 +93,7 @@ public class BetweenPoints : Obstacleable
             //StartCoroutine(EnabledFalse());
         }
         //gameManager.Door.SetActive(true);
-        if(gameManager.RequirementNumber==0 && !gameManager.isGameEnd)
-        {
-            gameManager.success=true;
-            gameManager.isGameEnd=true;
-            //Burada success menu ac
-            StartCoroutine(OpenSuccess());
-        }
+        
     }
 
     private IEnumerator OpenSuccess()
