@@ -12,8 +12,18 @@ public class PanelManager : MonoBehaviour
 
     
 
-    public bool oneTime=true;
+    private bool oneTime=true;
 
+    private void OnEnable() 
+    {
+        EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
+    }
+
+
+    private void OnDisable() 
+    {
+        EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
+    }
     
     private void Update() 
     {
@@ -26,6 +36,11 @@ public class PanelManager : MonoBehaviour
                 oneTime=false;
             }
         }
+    }
+
+    private void OnNextLevel()
+    {
+        StartPanel.gameObject.SetActive(true);
     }
 
 
