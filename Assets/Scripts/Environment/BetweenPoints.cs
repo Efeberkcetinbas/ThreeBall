@@ -8,6 +8,7 @@ public class BetweenPoints : Obstacleable
 {
     [SerializeField] private int customId;
 
+
     [SerializeField] private GameObject increaseScorePrefab;
     [SerializeField] private Transform pointPos;
 

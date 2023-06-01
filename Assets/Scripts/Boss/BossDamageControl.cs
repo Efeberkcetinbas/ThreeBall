@@ -11,6 +11,11 @@ public class BossDamageControl : MonoBehaviour
     [SerializeField] private Transform pointPos;
     [SerializeField] private ParticleSystem particle;
     [SerializeField] private ParticleSystem deadparticle;
+    [SerializeField] private GameObject shadow;
+
+    [SerializeField] private List<ParticleSystem> textParticles=new List<ParticleSystem>();
+
+    private int particleIndex;
     
 
     private void OnEnable() 
@@ -31,19 +36,20 @@ public class BossDamageControl : MonoBehaviour
     {
         deadparticle.Play();
         spriteRenderer.enabled=false;
+        shadow.SetActive(false);
     }
 
     private void OnNextLevel()
     {
         spriteRenderer.enabled=true;
+        shadow.SetActive(true);
     }
 
     private void OnHitBoss()
     {
         StartCoroutine(ChangeColor());
-        
-        //Particle Effect olsun, slash
-        //xp ciksin uzerinden
+        MakeRandomParticle();
+        textParticles[particleIndex].Play();
     }
 
     private IEnumerator ChangeColor()
@@ -63,6 +69,12 @@ public class BossDamageControl : MonoBehaviour
     {
         GameObject coin=Instantiate(increaseScorePrefab,pointPos.transform.position,increaseScorePrefab.transform.rotation);
         Destroy(coin,1);
+    }
+
+    private int MakeRandomParticle()
+    {
+        particleIndex=Random.Range(0,textParticles.Count);
+        return particleIndex;
     }
 
     

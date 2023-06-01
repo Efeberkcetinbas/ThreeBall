@@ -176,7 +176,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator OnIncreaseScore()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.5f);
         UIManager.Instance.SuccessButton.SetActive(true);
         UIManager.Instance.SuccessButton.transform.DOScale(Vector3.one,0.5f);
     }

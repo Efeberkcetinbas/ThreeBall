@@ -43,6 +43,7 @@ public class UIManager : MonoBehaviour
     {
         LevelText[0].text = "Level " + (PlayerPrefs.GetInt("RealLevel") + 1).ToString() + " Completed";
         LevelText[1].text = "Level " + (PlayerPrefs.GetInt("RealLevel") + 1).ToString();
+        LevelText[2].text = "Level " + (PlayerPrefs.GetInt("RealLevel") + 1).ToString() + " FAIL !";
     }
 
     public void UpgradeBossNameText()

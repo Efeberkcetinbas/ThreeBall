@@ -35,13 +35,11 @@ public class BossSpriteControl : MonoBehaviour
 
     private void OnNextLevel()
     {
+        bossData.bossIndex++;
+
         if(bossData.bossIndex>sprites.Count-1)
         {
             bossData.bossIndex=0;
-        }
-        else
-        {
-            bossData.bossIndex++;
         }
         
         spriteRenderer.sprite=sprites[bossData.bossIndex];
