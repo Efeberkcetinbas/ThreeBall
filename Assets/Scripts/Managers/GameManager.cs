@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Requirement")]
     public int RequirementNumber;
+    public string BossName;
     
 
     [Header("Open/Close")]
@@ -132,6 +133,8 @@ public class GameManager : MonoBehaviour
     {
         RequirementNumber=FindObjectOfType<RequirementControl>().requirementNumber;
         tempRequirementNumber=RequirementNumber;
+        BossName=FindObjectOfType<RequirementControl>().bossName;
+        UIManager.Instance.UpgradeBossNameText();
     }
 
     public void UpdateProgress()
@@ -151,8 +154,8 @@ public class GameManager : MonoBehaviour
     public void OpenSuccessMenu(bool station)
     {
 
-        SoundManager.Instance.Play("success");
-
+        //SoundManager.Instance.Play("success");
+        //Event firlat
         OpenClose(open_close,false);
 
         successPanel.SetActive(station);

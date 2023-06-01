@@ -11,7 +11,9 @@ public class Wall : Obstacleable
 
     internal override void DoAction(Player player)
     {
-        SoundManager.Instance.Play("Wall");
+        //EventManager.Broadcast(GameEvent.OnWall);
+
+        //DURUMA GORE ACARSIN
         player.leaveParticle.Play();
         GameManager.Instance.isWall=true;
     }

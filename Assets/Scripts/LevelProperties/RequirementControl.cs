@@ -5,4 +5,6 @@ using UnityEngine;
 public class RequirementControl : MonoBehaviour
 {
     public int requirementNumber;
+
+    public string bossName;
 }

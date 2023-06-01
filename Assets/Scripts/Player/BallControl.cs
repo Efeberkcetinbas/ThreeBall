@@ -114,7 +114,7 @@ public class BallControl : MonoBehaviour
         rb.AddForce(clampedForce, ForceMode2D.Impulse);
         transform.DOScale(new Vector3(.5f,.5f,.5f),0.2f);
         gameManager.canCollide=true;
-        SoundManager.Instance.Play("Release");
+        EventManager.Broadcast(GameEvent.OnFingerRelease);
 
         
 

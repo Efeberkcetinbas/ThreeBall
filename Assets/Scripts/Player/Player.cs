@@ -22,11 +22,13 @@ public class Player : MonoBehaviour
     private void OnEnable() 
     {
         //EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);   
+        EventManager.AddHandler(GameEvent.OnSaw,OnSaw);
     }
 
     private void OnDisable() 
     {
         //EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
+        EventManager.RemoveHandler(GameEvent.OnSaw,OnSaw);
     }
 
     private void OnNextLevel()
@@ -40,5 +42,17 @@ public class Player : MonoBehaviour
         spriteRenderer.sprite=sprites[randomIndex];
         return spriteRenderer.sprite;
         
+    }
+
+    private void OnSaw()
+    {
+        spriteRenderer.color=Color.red;
+        StartCoroutine(GetBackColor());
+    }
+
+    private IEnumerator GetBackColor()
+    {
+        yield return new WaitForSeconds(0.2f);
+        spriteRenderer.color=Color.white;
     }
 }

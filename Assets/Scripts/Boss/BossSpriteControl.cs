@@ -24,8 +24,26 @@ public class BossSpriteControl : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
     }
 
+    private void Start() 
+    {
+        if(bossData.bossIndex>sprites.Count-1)
+        {
+            bossData.bossIndex=0;
+        }
+        spriteRenderer.sprite=sprites[bossData.bossIndex];
+    }
+
     private void OnNextLevel()
     {
+        if(bossData.bossIndex>sprites.Count-1)
+        {
+            bossData.bossIndex=0;
+        }
+        else
+        {
+            bossData.bossIndex++;
+        }
+        
         spriteRenderer.sprite=sprites[bossData.bossIndex];
     }
 

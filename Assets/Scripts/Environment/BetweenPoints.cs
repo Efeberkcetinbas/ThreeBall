@@ -14,7 +14,6 @@ public class BetweenPoints : Obstacleable
 
     private GameManager gameManager;
     private CameraManager cameraManager;
-    private SoundManager soundManager;
     private LevelManager levelManager;
     private LineRenderer lineRenderer;
     private ScoreManager scoreManager;
@@ -23,7 +22,6 @@ public class BetweenPoints : Obstacleable
     {
         gameManager=GameManager.Instance;
         cameraManager=CameraManager.Instance;
-        soundManager=SoundManager.Instance;
         levelManager=LevelManager.Instance;
         scoreManager=ScoreManager.Instance;
 

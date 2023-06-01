@@ -5,7 +5,7 @@ using UnityEngine;
 public class EventAudioManager : MonoBehaviour
 {
     public AudioClip GameLoop,BuffMusic;
-    public AudioClip ExplosionSound,OpeningSound,BossHitSound,PassSound;
+    public AudioClip ExplosionSound,OpeningSound,BossHitSound,PassSound,WallSound,ReleaseSound,CollectSound,SawSound;
 
     AudioSource musicSource,effectSource;
 
@@ -25,12 +25,20 @@ public class EventAudioManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnBossDieParticle,OnBossDieParticle);
         EventManager.AddHandler(GameEvent.OnHitBoss,OnHitBoss);
         EventManager.AddHandler(GameEvent.OnPassBetweenPoints,OnPassBetweenPoints);
+        EventManager.AddHandler(GameEvent.OnWall,OnWall);
+        EventManager.AddHandler(GameEvent.OnFingerRelease,OnFingerRelease);
+        EventManager.AddHandler(GameEvent.OnCollectGold,OnCollectGold);
+        EventManager.AddHandler(GameEvent.OnSaw,OnSaw);
     }
     private void OnDisable() 
     {
         EventManager.RemoveHandler(GameEvent.OnBossDieParticle,OnBossDieParticle);
         EventManager.RemoveHandler(GameEvent.OnHitBoss,OnHitBoss);
         EventManager.RemoveHandler(GameEvent.OnPassBetweenPoints,OnPassBetweenPoints);
+        EventManager.RemoveHandler(GameEvent.OnWall,OnWall);
+        EventManager.RemoveHandler(GameEvent.OnFingerRelease,OnFingerRelease);
+        EventManager.RemoveHandler(GameEvent.OnCollectGold,OnCollectGold);
+        EventManager.RemoveHandler(GameEvent.OnSaw,OnSaw);
     }
 
     private void OnBossDieParticle()
@@ -46,5 +54,25 @@ public class EventAudioManager : MonoBehaviour
     private void OnPassBetweenPoints()
     {
         effectSource.PlayOneShot(PassSound);
+    }
+
+    private void OnWall()
+    {
+        effectSource.PlayOneShot(WallSound);
+    }
+
+    private void OnFingerRelease()
+    {
+        effectSource.PlayOneShot(ReleaseSound);
+    }
+
+    private void OnCollectGold()
+    {
+        effectSource.PlayOneShot(CollectSound);
+    }
+
+    private void OnSaw()
+    {
+        effectSource.PlayOneShot(SawSound);
     }
 }

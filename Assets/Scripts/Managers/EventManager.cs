@@ -10,6 +10,10 @@ public enum GameEvent
     OnBossDieParticle,
     OnSpawnWeapon,
     OnNextLevel,
+    OnWall,
+    OnFingerRelease,
+    OnCollectGold,
+    OnSaw,
     OnPassBetweenPoints
     
 

@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     [Header("Texts")]
     public TextMeshProUGUI[] LevelText;
     public TextMeshProUGUI ScoreText;
+    public TextMeshProUGUI BossNameText;
 
     [Header("Images")]
     public Image progressImage;
@@ -44,7 +45,10 @@ public class UIManager : MonoBehaviour
         LevelText[1].text = "Level " + (PlayerPrefs.GetInt("RealLevel") + 1).ToString();
     }
 
-    
+    public void UpgradeBossNameText()
+    {
+        BossNameText.text=GameManager.Instance.BossName;
+    }
 
     public void UpgradeScoreText()
     {
