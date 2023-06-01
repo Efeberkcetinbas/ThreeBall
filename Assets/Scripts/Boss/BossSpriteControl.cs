@@ -4,19 +4,15 @@ using UnityEngine;
 
 public class BossSpriteControl : MonoBehaviour
 {
-    private LevelManager levelManager;
 
-    private int index;
+    public BossData bossData;
 
     [SerializeField] private List<Sprite> sprites=new List<Sprite>();
 
     [SerializeField] private SpriteRenderer spriteRenderer;
+
+    [SerializeField] private int index;
     
-    void Start()
-    {
-        levelManager=LevelManager.Instance;
-        OnNextLevel();
-    }
 
     private void OnEnable() 
     {
@@ -30,7 +26,7 @@ public class BossSpriteControl : MonoBehaviour
 
     private void OnNextLevel()
     {
-        spriteRenderer.sprite=sprites[levelManager.levelIndex];
+        spriteRenderer.sprite=sprites[bossData.bossIndex];
     }
 
 }

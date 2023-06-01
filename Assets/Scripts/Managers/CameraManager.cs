@@ -44,6 +44,7 @@ public class CameraManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnSpawnWeapon,OnSpawnWeapon);
         EventManager.AddHandler(GameEvent.OnBossDie,OnBossDie);
         EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
+        EventManager.AddHandler(GameEvent.OnBossDieParticle,OnBossDieParticle);
     }
 
     private void OnDisable() 
@@ -52,6 +53,7 @@ public class CameraManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnSpawnWeapon,OnSpawnWeapon);
         EventManager.RemoveHandler(GameEvent.OnBossDie,OnBossDie);
         EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
+        EventManager.RemoveHandler(GameEvent.OnBossDieParticle,OnBossDieParticle);
     }
 
     private void OnHitBoss()
@@ -66,10 +68,14 @@ public class CameraManager : MonoBehaviour
 
     private void OnBossDie()
     {
-        Noise(1,1,3);
         cm.Follow=boss;
         ChangeFieldOfView(3,1);
         StartCoroutine(CallParticleBroadcast());
+    }
+
+    private void OnBossDieParticle()
+    {
+        Noise(5,5,1);
     }
 
     private void OnNextLevel()

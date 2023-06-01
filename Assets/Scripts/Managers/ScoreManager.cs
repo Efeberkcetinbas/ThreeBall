@@ -29,8 +29,6 @@ public class ScoreManager : MonoBehaviour
     public void UpdateScore(int increaseScore)
     {
         score+=increaseScore;
-        score += GameManager.Instance.comboAmount;
-        //DOTween.To(() => score, x => score = x, score+=increaseScore, 0.25f);
         PlayerPrefs.SetInt("Score",score);
         UIManager.Instance.UpgradeScoreText();
     }

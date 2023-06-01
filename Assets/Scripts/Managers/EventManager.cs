@@ -9,7 +9,8 @@ public enum GameEvent
     OnBossDie,
     OnBossDieParticle,
     OnSpawnWeapon,
-    OnNextLevel
+    OnNextLevel,
+    OnPassBetweenPoints
     
 
 }

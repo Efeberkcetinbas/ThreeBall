@@ -12,13 +12,7 @@ public class GameManager : MonoBehaviour
     public GameObject failPanel;
     public bool isGameEnd=false;
 
-    [Header("Timer")]
-    public bool timerIsRunning=true;
-    public bool canCombo;
-    public float RemainingTime;
-    public float comboTime;
-    public int comboAmount;
-    public TextMeshProUGUI comboText;
+  
 
 
     
@@ -32,8 +26,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Requirement")]
     public int RequirementNumber;
-    [Header("Incremental")]
-    public int AmounOfIncrease=1;
+    
 
     [Header("Open/Close")]
     [SerializeField] private GameObject[] open_close;
@@ -51,9 +44,7 @@ public class GameManager : MonoBehaviour
 
     public ParticleSystem[] fireworks;
 
-    /*[Header("Door Control")]
-    public GameObject Door;
-    internal Transform DoorTransform;*/
+    
 
     [Header("Scripts")]
     public BallManager ballManager;
@@ -95,11 +86,7 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public IEnumerator SetTimerStart()
-    {
-        yield return new WaitForSeconds(1);
-        timerIsRunning=true;
-    }
+    
 
 
     public void OpenClose(GameObject[] gameObjects,bool canOpen)
@@ -123,12 +110,7 @@ public class GameManager : MonoBehaviour
         LinesCol[selected].SetActive(true);
     }
 
-    /*public void UpdateDoorPosition()
-    {
-        DoorTransform=FindObjectOfType<DoorPosition>().doorPos;
-        Door.transform.position=DoorTransform.position;
-        Door.SetActive(false);
-    }*/
+  
 
     public void UpdateBallsPositions()
     {
@@ -144,15 +126,11 @@ public class GameManager : MonoBehaviour
         ball3.localPosition=Pos3;
     }
 
-    public void UpdateRemainingTime()
-    {
-        RemainingTime=FindObjectOfType<RemainingTimeControl>().RemainingTime;
-    }
+    
 
     public void UpdateRequirement()
     {
         RequirementNumber=FindObjectOfType<RequirementControl>().requirementNumber;
-        UIManager.Instance.UpdateRequirementText();
         tempRequirementNumber=RequirementNumber;
     }
 
@@ -167,7 +145,6 @@ public class GameManager : MonoBehaviour
     public int ChangeRequirement(int amount)
     {
         RequirementNumber+=amount;
-        UIManager.Instance.UpdateRequirementText();
         return RequirementNumber;
     }
 
@@ -175,10 +152,6 @@ public class GameManager : MonoBehaviour
     {
 
         SoundManager.Instance.Play("success");
-
-        timerIsRunning=false;
-
-        UIManager.Instance.UpdateEndTimer();
 
         OpenClose(open_close,false);
 
@@ -201,13 +174,8 @@ public class GameManager : MonoBehaviour
     IEnumerator OnIncreaseScore()
     {
         yield return new WaitForSeconds(2f);
-        //gameData.score += 50;
-        DOTween.To(GetScore,ChangeScore,ScoreManager.Instance.score+Mathf.FloorToInt(RemainingTime),2f).OnUpdate(UpdateUI);
-        DOTween.To(GetTime,ChangeTimer,RemainingTime-RemainingTime,2f).OnUpdate(UpdateTimerUI).OnComplete(()=>
-        {
-            UIManager.Instance.SuccessButton.SetActive(true);
-            UIManager.Instance.SuccessButton.transform.DOScale(Vector3.one,0.5f);
-        });
+        UIManager.Instance.SuccessButton.SetActive(true);
+        UIManager.Instance.SuccessButton.transform.DOScale(Vector3.one,0.5f);
     }
 
     private int GetScore()
@@ -220,28 +188,13 @@ public class GameManager : MonoBehaviour
         ScoreManager.Instance.score=value;
     }
 
-    private float GetTime()
-    {
-        return RemainingTime;
-    }
-
-    private void ChangeTimer(float value)
-    {
-        RemainingTime=value;
-    }
-
     private void UpdateUI()
     {
         UIManager.Instance.UpgradeEndScoreText();
-        //SoundManager.Instance.Play("scoreIncrease");
         
     }
 
-    private void UpdateTimerUI()
-    {
-        UIManager.Instance.UpdateEndTimer();
-    }
-
+    
 
     public void ResetSuccessPanel()
     {

@@ -25,7 +25,6 @@ public class PanelManager : MonoBehaviour
         {
             if(Input.touchCount>=1)
             {
-                GameManager.Instance.StartCoroutine(GameManager.Instance.SetTimerStart());
                 GameManager.Instance.isGameEnd=false;
                 StartPanel.gameObject.SetActive(false);
                 oneTime=false;

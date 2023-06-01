@@ -32,7 +32,6 @@ public class LevelManager : MonoBehaviour
     private void LoadLevel()
     {
 
-        //UIManager.Instance.StartFader();
 
         levelIndex = PlayerPrefs.GetInt("LevelNumber");
         if (levelIndex == levels.Count) levelIndex = 0;
@@ -47,18 +46,11 @@ public class LevelManager : MonoBehaviour
         levels[levelIndex].SetActive(true);
 
         
-        //ScoreManager.Instance.score=PlayerPrefs.GetInt("Score");
-        GameManager.Instance.UpdateRemainingTime();
-        TimerManager.Instance.UpdateTempRemaining();
-        TimerManager.Instance.DisplayCounterClock();
-        //GameManager.Instance.StartCoroutine(GameManager.Instance.SetTimerStart());
 
         UIManager.Instance.UpgradeScoreText();
         GameManager.Instance.UpdateBallsPositions();
         GameManager.Instance.UpdateRequirement();
-        //GameManager.Instance.UpdateDoorPosition();
         GameManager.Instance.ResetTheLevel();
-        //GameManager.Instance.isGameEnd=false;
 
         
         
@@ -77,10 +69,8 @@ public class LevelManager : MonoBehaviour
 
     public void RestartLevel()
     {
-        //UIManager.Instance.StartFader();
         GameManager.Instance.UpdateBallsPositions();
         GameManager.Instance.UpdateRequirement();
-        //GameManager.Instance.UpdateDoorPosition();
         GameManager.Instance.ResetTheLevel();
         LoadLevel();
         StartCoroutine(GameEndingTrue());

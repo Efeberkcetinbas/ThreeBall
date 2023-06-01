@@ -12,11 +12,9 @@ public class UIManager : MonoBehaviour
     [Header("Texts")]
     public TextMeshProUGUI[] LevelText;
     public TextMeshProUGUI ScoreText;
-    //public TextMeshProUGUI RequirementText;
 
     [Header("Images")]
     public Image progressImage;
-    public Image timerImage;
 
     public RectTransform fader;
 
@@ -63,20 +61,7 @@ public class UIManager : MonoBehaviour
         progressImage.DOFillAmount(value,duration);
     }
 
-    public void UpdateRequirementText()
-    {
-        //RequirementText.text=GameManager.Instance.RequirementNumber.ToString();
-    }
-
-    public void UpdateTimerCounter(float temp)
-    {
-        timerImage.fillAmount=GameManager.Instance.RemainingTime/temp;
-    }
-
-    public void UpdateEndTimer()
-    {
-        endTimer.text="+ " + Mathf.FloorToInt(GameManager.Instance.RemainingTime).ToString();
-    }
+    
 
     public void StartFader()
     {
