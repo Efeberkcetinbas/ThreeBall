@@ -72,7 +72,7 @@ public class LevelManager : MonoBehaviour
         GameManager.Instance.UpdateRequirement();
         GameManager.Instance.ResetTheLevel();
         LoadLevel();
-        StartCoroutine(GameEndingTrue());
+        //StartCoroutine(GameEndingTrue());
         
     }
 

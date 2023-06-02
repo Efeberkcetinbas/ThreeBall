@@ -8,6 +8,7 @@ public class PanelManager : MonoBehaviour
 {
     [SerializeField] private RectTransform StartPanel,CharacterPanel,WeaponPanel;
 
+
     [SerializeField] private Image Fade;
 
     [SerializeField] private float StartX,StartY,CharacterX,CharacterY,WeaponX,WeaponY,duration;
@@ -42,10 +43,13 @@ public class PanelManager : MonoBehaviour
 
     private void OnNextLevel()
     {
-        StartCoroutine(Blink(Fade.gameObject,Fade));
-        oneTime=true;
         StartPanel.gameObject.SetActive(true);
+        StartPanel.DOAnchorPos(Vector2.zero,0.1f);
+        StartCoroutine(Blink(Fade.gameObject,Fade));
     }
+
+
+  
 
     private IEnumerator Blink(GameObject gameObject,Image image)
     {
@@ -55,6 +59,8 @@ public class PanelManager : MonoBehaviour
         image.DOFade(0,0.2f);
         yield return new WaitForSeconds(0.2f);
         gameObject.SetActive(false);
+        oneTime=true;
+
     }
 
 
