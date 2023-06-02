@@ -5,7 +5,7 @@ using UnityEngine;
 public class EventAudioManager : MonoBehaviour
 {
     public AudioClip GameLoop,BuffMusic;
-    public AudioClip ExplosionSound,OpeningSound,BossHitSound,PassSound,WallSound,ReleaseSound,CollectSound,SawSound;
+    public AudioClip ExplosionSound,OpeningSound,BossHitSound,PassSound,WallSound,ReleaseSound,CollectSound,SawSound,ButtonSound;
 
     AudioSource musicSource,effectSource;
 
@@ -29,6 +29,7 @@ public class EventAudioManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnFingerRelease,OnFingerRelease);
         EventManager.AddHandler(GameEvent.OnCollectGold,OnCollectGold);
         EventManager.AddHandler(GameEvent.OnSaw,OnSaw);
+        EventManager.AddHandler(GameEvent.OnButtonClicked,OnButtonClicked);
     }
     private void OnDisable() 
     {
@@ -39,6 +40,7 @@ public class EventAudioManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnFingerRelease,OnFingerRelease);
         EventManager.RemoveHandler(GameEvent.OnCollectGold,OnCollectGold);
         EventManager.RemoveHandler(GameEvent.OnSaw,OnSaw);
+        EventManager.RemoveHandler(GameEvent.OnButtonClicked,OnButtonClicked);
     }
 
     private void OnBossDieParticle()
@@ -74,5 +76,10 @@ public class EventAudioManager : MonoBehaviour
     private void OnSaw()
     {
         effectSource.PlayOneShot(SawSound);
+    }
+
+    private void OnButtonClicked()
+    {
+        effectSource.PlayOneShot(ButtonSound);
     }
 }

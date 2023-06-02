@@ -8,6 +8,8 @@ public class PanelManager : MonoBehaviour
 {
     [SerializeField] private RectTransform StartPanel,CharacterPanel,WeaponPanel;
 
+    [SerializeField] private Image Fade;
+
     [SerializeField] private float StartX,StartY,CharacterX,CharacterY,WeaponX,WeaponY,duration;
 
     
@@ -40,13 +42,26 @@ public class PanelManager : MonoBehaviour
 
     private void OnNextLevel()
     {
+        StartCoroutine(Blink(Fade.gameObject,Fade));
+        oneTime=true;
         StartPanel.gameObject.SetActive(true);
+    }
+
+    private IEnumerator Blink(GameObject gameObject,Image image)
+    {
+        
+        gameObject.SetActive(true);
+        image.color=new Color(0,0,0,1);
+        image.DOFade(0,0.2f);
+        yield return new WaitForSeconds(0.2f);
+        gameObject.SetActive(false);
     }
 
 
     public void OpenCharacterPanel()
     {
         oneTime=false;
+        EventManager.Broadcast(GameEvent.OnButtonClicked);
         StartPanel.DOAnchorPos(new Vector2(StartX,StartY),duration).OnComplete(()=>StartPanel.gameObject.SetActive(false));
         CharacterPanel.gameObject.SetActive(true);
         CharacterPanel.DOAnchorPos(Vector2.zero,duration);
@@ -55,6 +70,7 @@ public class PanelManager : MonoBehaviour
     public void OpenWeaponPanel()
     {
         oneTime=false;
+        EventManager.Broadcast(GameEvent.OnButtonClicked);
         StartPanel.DOAnchorPos(new Vector2(StartX,StartY),duration).OnComplete(()=>StartPanel.gameObject.SetActive(false));
         WeaponPanel.gameObject.SetActive(true);
         WeaponPanel.DOAnchorPos(Vector2.zero,duration);
@@ -76,6 +92,7 @@ public class PanelManager : MonoBehaviour
             WeaponPanel.DOAnchorPos(new Vector2(WeaponX,WeaponY),duration).OnComplete(()=>WeaponPanel.gameObject.SetActive(false));
         }
 
+        EventManager.Broadcast(GameEvent.OnButtonClicked);
 
     }
 
