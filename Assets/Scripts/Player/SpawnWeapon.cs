@@ -10,6 +10,8 @@ public class SpawnWeapon : MonoBehaviour
 
     [SerializeField] private List<ParticleSystem> particles;
 
+    public SwordData swordData;
+
     
     private void OnEnable() 
     {
@@ -28,7 +30,8 @@ public class SpawnWeapon : MonoBehaviour
             particles[i].Play();
         }
         GameObject weap=Instantiate(Weapon,new Vector2(0,0),transform.rotation);
-        weap.transform.DOMove(Boss.position,0.5f).OnComplete(()=>{
+        weap.GetComponent<SpriteRenderer>().sprite=swordData.SwordSprite;
+        weap.transform.DOMove(Boss.position,0.3f).OnComplete(()=>{
             EventManager.Broadcast(GameEvent.OnHitBoss);
             Destroy(weap);
         });

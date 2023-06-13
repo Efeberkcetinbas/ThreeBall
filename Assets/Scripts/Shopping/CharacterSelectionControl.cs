@@ -13,6 +13,7 @@ public class CharacterSelectionControl : MonoBehaviour
 
     public void SelectCharacter(int selectedIndex)
     {
+        
         if(characters[selectedIndex-1].button.interactable)
         {
             playerData.sprite=characters[selectedIndex-1].characterImage.sprite;

@@ -17,7 +17,8 @@ public enum GameEvent
     OnSaw,
     OnPassBetweenPoints,
     OnSelection,
-    OnCharacterSelected
+    OnCharacterSelected,
+    OnWeaponSelected
 
     
 

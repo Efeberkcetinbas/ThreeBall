@@ -96,7 +96,8 @@ public class PanelManager : MonoBehaviour
         {
             StartPanel.gameObject.SetActive(true);
             StartPanel.DOAnchorPos(Vector2.zero,duration).OnComplete(()=>oneTime=true);
-            WeaponPanel.DOAnchorPos(new Vector2(WeaponX,WeaponY),duration).OnComplete(()=>WeaponPanel.gameObject.SetActive(false));
+            WeaponPanel.DOAnchorPos(new Vector2(WeaponX,WeaponY),duration);
+            //.OnComplete(()=>WeaponPanel.gameObject.SetActive(false));
         }
 
         EventManager.Broadcast(GameEvent.OnButtonClicked);
