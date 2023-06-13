@@ -89,7 +89,8 @@ public class PanelManager : MonoBehaviour
         {
             StartPanel.gameObject.SetActive(true);
             StartPanel.DOAnchorPos(Vector2.zero,duration).OnComplete(()=>oneTime=true);
-            CharacterPanel.DOAnchorPos(new Vector2(CharacterX,CharacterY),duration).OnComplete(()=>CharacterPanel.gameObject.SetActive(false));
+            CharacterPanel.DOAnchorPos(new Vector2(CharacterX,CharacterY),duration);
+            //.OnComplete(()=>CharacterPanel.gameObject.SetActive(false));
         }
         else
         {

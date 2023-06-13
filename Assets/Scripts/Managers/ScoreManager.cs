@@ -28,6 +28,7 @@ public class ScoreManager : MonoBehaviour
 
     public void UpdateScore(int increaseScore)
     {
+        //Data'daki degere gore artar. Onu shoppingten sonra incremental Yap.
         score+=increaseScore;
         PlayerPrefs.SetInt("Score",score);
         UIManager.Instance.UpgradeScoreText();

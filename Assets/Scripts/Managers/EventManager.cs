@@ -15,7 +15,9 @@ public enum GameEvent
     OnFingerRelease,
     OnCollectGold,
     OnSaw,
-    OnPassBetweenPoints
+    OnPassBetweenPoints,
+    OnSelection,
+    OnCharacterSelected
 
     
 

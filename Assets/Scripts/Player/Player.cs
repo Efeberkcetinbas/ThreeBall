@@ -10,39 +10,36 @@ public class Player : MonoBehaviour
     public ParticleSystem particle;
     public ParticleSystem leaveParticle;
 
-    public List<Sprite> sprites=new List<Sprite>();
 
     private SpriteRenderer spriteRenderer;
+
+    public PlayerData playerData;
     private void Start() 
     {
         spriteRenderer=GetComponent<SpriteRenderer>();
-        //MakeRandomSprite(spriteRenderer);
+        spriteRenderer.sprite=playerData.sprite;
     }
 
     private void OnEnable() 
     {
-        //EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);   
         EventManager.AddHandler(GameEvent.OnSaw,OnSaw);
+        EventManager.AddHandler(GameEvent.OnCharacterSelected,OnCharacterSelected);
     }
 
     private void OnDisable() 
     {
-        //EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.RemoveHandler(GameEvent.OnSaw,OnSaw);
+        EventManager.RemoveHandler(GameEvent.OnCharacterSelected,OnCharacterSelected);
     }
 
-    private void OnNextLevel()
+    private void OnCharacterSelected()
     {
-        MakeRandomSprite(spriteRenderer);
+        spriteRenderer.sprite=playerData.sprite;
     }
 
-    private Sprite MakeRandomSprite(SpriteRenderer spriteRenderer)
-    {
-        randomIndex=Random.Range(0,sprites.Count);
-        spriteRenderer.sprite=sprites[randomIndex];
-        return spriteRenderer.sprite;
-        
-    }
+   
+
+   
 
     private void OnSaw()
     {
