@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: SwordData
   m_EditorClassIdentifier: 
   SwordSprite: {fileID: 21300000, guid: ff6d07475cee32c4ca7a0d0d00025340, type: 3}
+  spawnPos: {fileID: 0}

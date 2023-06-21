@@ -7,5 +7,7 @@ using UnityEngine;
 public class SwordData : ScriptableObject 
 {
     public Sprite SwordSprite;
+
+    public Transform spawnPos;
     
 }

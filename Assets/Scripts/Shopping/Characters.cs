@@ -56,6 +56,7 @@ public class Characters : MonoBehaviour
             priceText.text="B";
             lockImage.SetActive(false);
             button.interactable=true;
+            button.image.color=Color.green;
         }
 
         if(ScoreManager.Instance.score>=price || isPurchased || characterData.isPurchased)

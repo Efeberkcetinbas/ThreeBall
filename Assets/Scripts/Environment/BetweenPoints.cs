@@ -19,6 +19,9 @@ public class BetweenPoints : Obstacleable
     private LineRenderer lineRenderer;
     private ScoreManager scoreManager;
 
+
+    public SwordData swordData;
+
     void Start()
     {
         gameManager=GameManager.Instance;
@@ -64,6 +67,7 @@ public class BetweenPoints : Obstacleable
         {
             StartPointMove();
             scoreManager.UpdateScore(+1);
+            swordData.spawnPos=player.transform;
             EventManager.Broadcast(GameEvent.OnSpawnWeapon);
             if(gameManager.isWall)
                 gameManager.PlayFireWorks();

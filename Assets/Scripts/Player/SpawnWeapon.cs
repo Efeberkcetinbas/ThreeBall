@@ -27,11 +27,12 @@ public class SpawnWeapon : MonoBehaviour
     {
         for (int i = 0; i < particles.Count; i++)
         {
+            particles[i].transform.position=swordData.spawnPos.position;
             particles[i].Play();
         }
-        GameObject weap=Instantiate(Weapon,new Vector2(0,0),transform.rotation);
+        GameObject weap=Instantiate(Weapon,swordData.spawnPos.position,transform.rotation);
         weap.GetComponent<SpriteRenderer>().sprite=swordData.SwordSprite;
-        weap.transform.DOMove(Boss.position,0.3f).OnComplete(()=>{
+        weap.transform.DOMove(Boss.position,0.5f).OnComplete(()=>{
             EventManager.Broadcast(GameEvent.OnHitBoss);
             Destroy(weap);
         });
