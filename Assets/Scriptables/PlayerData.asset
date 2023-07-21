@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a8ce683365a51a4c8fb0fab942212c1, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  CharacterIndex: 0
   sprite: {fileID: 21300000, guid: c8d6c7d267828064787f25cd28276def, type: 3}

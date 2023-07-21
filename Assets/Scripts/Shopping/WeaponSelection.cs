@@ -19,7 +19,10 @@ public class WeaponSelection : MonoBehaviour
             EventManager.Broadcast(GameEvent.OnSelection);
             EventManager.Broadcast(GameEvent.OnCharacterSelected);
             weapons[selectedIndex-1].lockImage.SetActive(false);
-            ScoreManager.Instance.UpdateScore(-weapons[selectedIndex-1].price);
+
+            if(weapons[selectedIndex-1].isPurchased)
+                ScoreManager.Instance.UpdateScore(-weapons[selectedIndex-1].price);
+
             weapons[selectedIndex-1].weaponData.isPurchased=true;
         }
     }

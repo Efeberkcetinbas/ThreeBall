@@ -57,9 +57,10 @@ public class Characters : MonoBehaviour
             lockImage.SetActive(false);
             button.interactable=true;
             button.image.color=Color.green;
+            isPurchased=true;
         }
 
-        if(ScoreManager.Instance.score>=price || isPurchased || characterData.isPurchased)
+        if(ScoreManager.Instance.score>=price || characterData.isPurchased)
         {
             button.interactable=true;
             canBuy=true;

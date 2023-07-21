@@ -56,9 +56,10 @@ public class Weapons : MonoBehaviour
             lockImage.SetActive(false);
             button.interactable=true;
             button.image.color=Color.green;
+            isPurchased=true;
         }
 
-        if(ScoreManager.Instance.score>=price || isPurchased || weaponData.isPurchased)
+        if(ScoreManager.Instance.score>=price  || weaponData.isPurchased)
         {
             button.interactable=true;
             canBuy=true;

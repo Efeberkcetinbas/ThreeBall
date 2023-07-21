@@ -16,11 +16,16 @@ public class CharacterSelectionControl : MonoBehaviour
         
         if(characters[selectedIndex-1].button.interactable)
         {
+            
+
             playerData.sprite=characters[selectedIndex-1].characterImage.sprite;
             EventManager.Broadcast(GameEvent.OnSelection);
             EventManager.Broadcast(GameEvent.OnCharacterSelected);
             characters[selectedIndex-1].lockImage.SetActive(false);
-            ScoreManager.Instance.UpdateScore(-characters[selectedIndex-1].price);
+            
+            if(!characters[selectedIndex-1].isPurchased)
+                ScoreManager.Instance.UpdateScore(-characters[selectedIndex-1].price);
+            
             characters[selectedIndex-1].characterData.isPurchased=true;
         }
     }
