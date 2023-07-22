@@ -49,7 +49,9 @@ public class BetweenPoints : Obstacleable
     private void OnHitBoss()
     {
 
+        //Buradan merge olmus sayiyi alip damage veriyoruz !!!!
         gameManager.ChangeRequirement(-1);
+        //UI kismi buradan degistiriliyor
         gameManager.UpdateProgress();
 
         if(gameManager.RequirementNumber<=0 && !gameManager.isGameEnd)

@@ -140,6 +140,7 @@ public class GameManager : MonoBehaviour
     public void UpdateProgress()
     {
         float value=1/(float)tempRequirementNumber;
+        //Merge seklinde artmasi gerekiyor
         progressNumber+=value;
         
         UIManager.Instance.UpdateProgressBar(progressNumber,0.5f);
