@@ -10,33 +10,50 @@ public class Player : MonoBehaviour
     public ParticleSystem particle;
     public ParticleSystem leaveParticle;
 
-
+    [SerializeField] private List<Sprite> emojis=new List<Sprite>();
     private SpriteRenderer spriteRenderer;
 
     public PlayerData playerData;
     private void Start() 
     {
         spriteRenderer=GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite=playerData.sprite;
+        OnNextLevel();
+        //spriteRenderer.sprite=playerData.sprite;
     }
 
     private void OnEnable() 
     {
         EventManager.AddHandler(GameEvent.OnSaw,OnSaw);
         EventManager.AddHandler(GameEvent.OnCharacterSelected,OnCharacterSelected);
+        EventManager.AddHandler(GameEvent.OnUpdateEmoji,OnUpdateEmoji);
+        EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
+
     }
 
     private void OnDisable() 
     {
         EventManager.RemoveHandler(GameEvent.OnSaw,OnSaw);
         EventManager.RemoveHandler(GameEvent.OnCharacterSelected,OnCharacterSelected);
+        EventManager.RemoveHandler(GameEvent.OnUpdateEmoji,OnUpdateEmoji);
+        EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
     }
 
     private void OnCharacterSelected()
     {
-        spriteRenderer.sprite=playerData.sprite;
+        //spriteRenderer.sprite=playerData.sprite;
     }
 
+
+    private void OnUpdateEmoji()
+    {
+        spriteRenderer.sprite=emojis[playerData.characterIndex];
+    }
+
+    private void OnNextLevel()
+    {
+        playerData.characterIndex=1;
+        spriteRenderer.sprite=emojis[playerData.characterIndex];
+    }
    
 
    

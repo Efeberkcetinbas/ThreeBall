@@ -18,6 +18,7 @@ public enum GameEvent
     OnPassBetweenPoints,
     OnSelection,
     OnCharacterSelected,
+    OnUpdateEmoji,
     OnWeaponSelected
 
     

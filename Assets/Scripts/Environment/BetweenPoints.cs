@@ -21,6 +21,7 @@ public class BetweenPoints : Obstacleable
 
 
     public SwordData swordData;
+    public PlayerData playerData;
 
     void Start()
     {
@@ -69,6 +70,8 @@ public class BetweenPoints : Obstacleable
         {
             StartPointMove();
             scoreManager.UpdateScore(+1);
+            playerData.characterIndex++;
+            EventManager.Broadcast(GameEvent.OnUpdateEmoji);
             swordData.spawnPos=player.transform;
             EventManager.Broadcast(GameEvent.OnSpawnWeapon);
             if(gameManager.isWall)

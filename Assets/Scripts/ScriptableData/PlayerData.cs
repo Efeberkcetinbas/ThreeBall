@@ -7,5 +7,7 @@ using UnityEngine;
 public class PlayerData : ScriptableObject 
 {
     public Sprite sprite;
+
+    public int characterIndex;
     
 }
