@@ -21,7 +21,6 @@ public class Characters : MonoBehaviour
 
     public CharacterData characterData;
     public PlayerData playerData;
-    public CharacterSelectionControl characterSelectionControl;
 
     public Color color;
 
@@ -62,13 +61,7 @@ public class Characters : MonoBehaviour
             
             lockImage.SetActive(false);
             button.interactable=true;
-            for (int i = 0; i < characterSelectionControl.characters.Count; i++)
-            {
-                characterSelectionControl.characters[i].button.image.color=Color.white;
-            }
-
-            button.image.color=color;
-            //playerData.IncreasePower=power;
+            
 
             //button.image.color=Color.green;
             goldImage.SetActive(false);

@@ -8,6 +8,7 @@ public class CharacterSelectionControl : MonoBehaviour
 
     public PlayerData playerData;
 
+    public Color color;
     
 
 
@@ -25,6 +26,13 @@ public class CharacterSelectionControl : MonoBehaviour
                 ScoreManager.Instance.UpdateScore(-characters[selectedIndex-1].price);
             
             characters[selectedIndex-1].characterData.isPurchased=true;
+
+            for (int i = 0; i < characters.Count; i++)
+            {
+                characters[i].button.image.color=Color.white;
+            }
+
+            characters[selectedIndex-1].button.image.color=color;
         }
     }
 }
