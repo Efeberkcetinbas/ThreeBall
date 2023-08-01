@@ -98,6 +98,7 @@ public class BallControl : MonoBehaviour
         gameManager.canCollide=false;
         gameManager.LineOpenControl(ballManager.index);
         transform.DOScale(new Vector3(.4f,.4f,.4f),0.2f);
+        //Pushlamak icin
     }
     private void Dragging()
     {
