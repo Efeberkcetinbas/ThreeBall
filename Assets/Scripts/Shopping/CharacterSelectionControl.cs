@@ -20,7 +20,7 @@ public class CharacterSelectionControl : MonoBehaviour
             EventManager.Broadcast(GameEvent.OnSelection);
             EventManager.Broadcast(GameEvent.OnCharacterSelected);
             characters[selectedIndex-1].lockImage.SetActive(false);
-            
+            playerData.IncreasePower=characters[selectedIndex-1].power;
             if(!characters[selectedIndex-1].isPurchased)
                 ScoreManager.Instance.UpdateScore(-characters[selectedIndex-1].price);
             

@@ -68,7 +68,7 @@ public class Characters : MonoBehaviour
             }
 
             button.image.color=color;
-            playerData.IncreasePower=power;
+            //playerData.IncreasePower=power;
 
             //button.image.color=Color.green;
             goldImage.SetActive(false);
