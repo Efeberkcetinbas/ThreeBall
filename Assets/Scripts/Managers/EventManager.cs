@@ -5,6 +5,10 @@ using UnityEngine;
 
 public enum GameEvent
 {
+
+
+
+    //Game
     OnHitBoss,
     OnBossDie,
     OnBossDieParticle,
@@ -20,6 +24,8 @@ public enum GameEvent
     OnCharacterSelected,
     OnUpdateEmoji,
     OnWeaponSelected
+
+
 
     
 

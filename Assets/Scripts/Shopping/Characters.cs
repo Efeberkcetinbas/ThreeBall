@@ -7,18 +7,23 @@ using TMPro;
 public class Characters : MonoBehaviour
 {
     public int price;
+    public int power;
 
     public bool isPurchased=false;
     public bool canBuy=false;
 
     public Image characterImage;
-    public GameObject lockImage;
+    public GameObject lockImage,goldImage,TickImage;
 
     internal Button button;
 
     public TextMeshProUGUI priceText;
 
     public CharacterData characterData;
+    public PlayerData playerData;
+    public CharacterSelectionControl characterSelectionControl;
+
+    public Color color;
 
     private void Start() 
     {
@@ -53,10 +58,22 @@ public class Characters : MonoBehaviour
     {
         if(characterData.isPurchased)
         {
-            priceText.text="B";
+            //priceText.text="B";
+            
             lockImage.SetActive(false);
             button.interactable=true;
-            button.image.color=Color.green;
+            for (int i = 0; i < characterSelectionControl.characters.Count; i++)
+            {
+                characterSelectionControl.characters[i].button.image.color=Color.white;
+            }
+
+            button.image.color=color;
+            playerData.IncreasePower=power;
+
+            //button.image.color=Color.green;
+            goldImage.SetActive(false);
+            TickImage.SetActive(true);
+            priceText.gameObject.SetActive(false);
             isPurchased=true;
         }
 

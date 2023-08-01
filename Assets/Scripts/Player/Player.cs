@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     {
         spriteRenderer=GetComponent<SpriteRenderer>();
         OnNextLevel();
-        //spriteRenderer.sprite=playerData.sprite;
+        spriteRenderer.sprite=playerData.sprite;
     }
 
     private void OnEnable() 
@@ -40,19 +40,19 @@ public class Player : MonoBehaviour
 
     private void OnCharacterSelected()
     {
-        //spriteRenderer.sprite=playerData.sprite;
+        spriteRenderer.sprite=playerData.sprite;
     }
 
 
     private void OnUpdateEmoji()
     {
-        spriteRenderer.sprite=emojis[playerData.characterIndex];
+        spriteRenderer.sprite=emojis[playerData.characterIndex + playerData.IncreasePower];
     }
 
     private void OnNextLevel()
     {
         playerData.characterIndex=1;
-        spriteRenderer.sprite=emojis[playerData.characterIndex];
+        spriteRenderer.sprite=emojis[playerData.characterIndex + playerData.IncreasePower];
     }
    
 

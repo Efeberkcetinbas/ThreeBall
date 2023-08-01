@@ -16,8 +16,6 @@ public class CharacterSelectionControl : MonoBehaviour
         
         if(characters[selectedIndex-1].button.interactable)
         {
-            
-
             playerData.sprite=characters[selectedIndex-1].characterImage.sprite;
             EventManager.Broadcast(GameEvent.OnSelection);
             EventManager.Broadcast(GameEvent.OnCharacterSelected);

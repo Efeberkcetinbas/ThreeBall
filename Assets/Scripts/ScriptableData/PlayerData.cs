@@ -9,5 +9,6 @@ public class PlayerData : ScriptableObject
     public Sprite sprite;
 
     public int characterIndex;
+    public int IncreasePower;
     
 }
