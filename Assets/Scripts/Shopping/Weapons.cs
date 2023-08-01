@@ -12,7 +12,7 @@ public class Weapons : MonoBehaviour
     public bool canBuy=false;
 
     public Image weaponImage;
-    public GameObject lockImage;
+    public GameObject lockImage,goldImage,TickImage;
 
     internal Button button;
 
@@ -53,9 +53,12 @@ public class Weapons : MonoBehaviour
         if(weaponData.isPurchased)
         {
             priceText.text="B";
+            priceText.gameObject.SetActive(false);
+            goldImage.SetActive(false);
+            TickImage.SetActive(true);
             lockImage.SetActive(false);
             button.interactable=true;
-            button.image.color=Color.green;
+            
             isPurchased=true;
         }
 

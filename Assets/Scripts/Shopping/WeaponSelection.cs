@@ -7,6 +7,8 @@ public class WeaponSelection : MonoBehaviour
     public List<Weapons> weapons=new List<Weapons>();
 
     public SwordData swordData;
+
+    public Color color;
     
     
 
@@ -24,6 +26,13 @@ public class WeaponSelection : MonoBehaviour
                 ScoreManager.Instance.UpdateScore(-weapons[selectedIndex-1].price);
 
             weapons[selectedIndex-1].weaponData.isPurchased=true;
+
+            for (int i = 0; i < weapons.Count; i++)
+            {
+                weapons[i].button.image.color=Color.white;
+            }
+
+            weapons[selectedIndex-1].button.image.color=color;
         }
     }
 }
