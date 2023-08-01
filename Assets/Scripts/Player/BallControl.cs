@@ -37,12 +37,13 @@ public class BallControl : MonoBehaviour
     private void OnEnable() 
     {
         EventManager.AddHandler(GameEvent.OnNextLevel,StopSpinning);
-        
+        EventManager.AddHandler(GameEvent.OnBossDie,OnBossDie);
     }
 
     private void OnDisable() 
     {
         EventManager.RemoveHandler(GameEvent.OnNextLevel,StopSpinning);
+        EventManager.RemoveHandler(GameEvent.OnBossDie,OnBossDie);
     }
 
     private void StopSpinning()
@@ -50,6 +51,10 @@ public class BallControl : MonoBehaviour
         rb.constraints=RigidbodyConstraints2D.FreezeRotation;
     }
 
+    private void OnBossDie()
+    {
+        rb.constraints=RigidbodyConstraints2D.FreezeRotation;
+    }
 
 
     private void Update()
