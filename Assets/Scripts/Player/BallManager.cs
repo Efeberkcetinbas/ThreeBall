@@ -15,6 +15,18 @@ public class BallManager : MonoBehaviour
     {
         OpenSignal();
     }
+
+    private void OnEnable()
+    {
+        EventManager.AddHandler(GameEvent.OnSwitchPlayerTurn,OnSwitchPlayerTurn);
+
+    }
+
+    private void OnDisable()
+    {
+        EventManager.RemoveHandler(GameEvent.OnSwitchPlayerTurn,OnSwitchPlayerTurn);
+
+    }
     
     public void OpenSignal()
     {
@@ -37,6 +49,13 @@ public class BallManager : MonoBehaviour
     {
         balls[index].GetComponent<BallControl>().canShoot=false;
         index++;
+    }
+
+    private void OnSwitchPlayerTurn()
+    {
+        IncreaseIndex();
+        CheckIndex();
+        OpenSignal();
     }
 
     public void CheckIndex()

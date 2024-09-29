@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayerData : ScriptableObject 
 {
     public Sprite sprite;
-
+    public int selectedCharacterIndex;
     public int characterIndex;
     public int IncreasePower;
     

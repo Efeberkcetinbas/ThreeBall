@@ -9,39 +9,36 @@ public class Characters : MonoBehaviour
     public int price;
     public int power;
 
-    public bool isPurchased=false;
-    public bool canBuy=false;
+    public bool isPurchased = false;
+    public bool canBuy = false;
 
     public Image characterImage;
-    public GameObject lockImage,goldImage,TickImage;
+    public GameObject lockImage, goldImage, tickImage;
 
     internal Button button;
-
     public TextMeshProUGUI priceText;
 
     public CharacterData characterData;
     public PlayerData playerData;
 
-    public Color color;
-
-    private void Start() 
+    private void Start()
     {
-        button=GetComponent<Button>();
-        priceText.text=price.ToString();
+        button = GetComponent<Button>();
+        priceText.text = price.ToString();
+        CheckPurchase();
     }
 
-    private void OnEnable() 
+    private void OnEnable()
     {
-        EventManager.AddHandler(GameEvent.OnButtonClicked,OnButtonClicked);
-        EventManager.AddHandler(GameEvent.OnCharacterSelected,OnCharacterSelected);
+        EventManager.AddHandler(GameEvent.OnButtonClicked, OnButtonClicked);
+        EventManager.AddHandler(GameEvent.OnCharacterSelected, OnCharacterSelected);
     }
 
-    private void OnDisable() 
+    private void OnDisable()
     {
-        EventManager.RemoveHandler(GameEvent.OnButtonClicked,OnButtonClicked);
-        EventManager.RemoveHandler(GameEvent.OnCharacterSelected,OnCharacterSelected);
+        EventManager.RemoveHandler(GameEvent.OnButtonClicked, OnButtonClicked);
+        EventManager.RemoveHandler(GameEvent.OnCharacterSelected, OnCharacterSelected);
     }
-
 
     private void OnButtonClicked()
     {
@@ -55,31 +52,27 @@ public class Characters : MonoBehaviour
 
     private void CheckPurchase()
     {
-        if(characterData.isPurchased)
+        // If already purchased, update the visuals
+        if (characterData.isPurchased)
         {
-            //priceText.text="B";
-            
             lockImage.SetActive(false);
-            button.interactable=true;
-            
-
-            //button.image.color=Color.green;
+            button.interactable = true;
             goldImage.SetActive(false);
-            TickImage.SetActive(true);
+            //tickImage.SetActive(true);
             priceText.gameObject.SetActive(false);
-            isPurchased=true;
+            isPurchased = true;
         }
 
-        if(ScoreManager.Instance.score>=price || characterData.isPurchased)
+        // Check if the player can buy the character
+        if (ScoreManager.Instance.score >= price || characterData.isPurchased)
         {
-            button.interactable=true;
-            canBuy=true;
+            button.interactable = true;
+            canBuy = true;
         }
-
         else
         {
-            button.interactable=false;
-            canBuy=false;
+            button.interactable = false;
+            canBuy = false;
         }
     }
 }

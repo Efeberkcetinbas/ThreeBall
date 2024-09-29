@@ -22,10 +22,12 @@ public enum GameEvent
     OnPassBetweenPoints,
     OnSelection,
     OnCharacterSelected,
-    OnUpdateEmoji,
-    OnWeaponSelected
+    OnWeaponSelected,
+    
 
-
+    //Player
+    OnSwitchPlayerTurn,
+    OnUpdateWeapon
 
     
 

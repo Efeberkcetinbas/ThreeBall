@@ -11,6 +11,7 @@ public class BetweenPoints : Obstacleable
 
     [SerializeField] private GameObject increaseScorePrefab;
     [SerializeField] private Transform pointPos;
+    [SerializeField] private Ease ease;
 
 
     private GameManager gameManager;
@@ -70,8 +71,9 @@ public class BetweenPoints : Obstacleable
         {
             StartPointMove();
             scoreManager.UpdateScore(+1);
-            playerData.characterIndex++;
-            EventManager.Broadcast(GameEvent.OnUpdateEmoji);
+            //playerData.characterIndex++;
+            playerData.selectedCharacterIndex=player.id-1;
+            
             swordData.spawnPos=player.transform;
             EventManager.Broadcast(GameEvent.OnSpawnWeapon);
             if(gameManager.isWall)
@@ -80,6 +82,8 @@ public class BetweenPoints : Obstacleable
            
             
             EventManager.Broadcast(GameEvent.OnPassBetweenPoints);
+            player.transform.DOShakeScale(0.5f,1,10);
+            
             gameManager.canCollide=false;
             player.particle.Play();
         }

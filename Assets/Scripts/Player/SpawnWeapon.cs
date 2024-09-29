@@ -32,6 +32,7 @@ public class SpawnWeapon : MonoBehaviour
         }
         GameObject weap=Instantiate(Weapon,swordData.spawnPos.position,transform.rotation);
         weap.GetComponent<SpriteRenderer>().sprite=swordData.SwordSprite;
+        weap.transform.DORotate(new Vector3(0f, 0f, 360f), 0.5f, RotateMode.FastBeyond360);
         weap.transform.DOMove(Boss.position,0.5f).OnComplete(()=>{
             EventManager.Broadcast(GameEvent.OnHitBoss);
             Destroy(weap);

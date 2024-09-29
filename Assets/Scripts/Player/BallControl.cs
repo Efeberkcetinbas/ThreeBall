@@ -132,20 +132,11 @@ public class BallControl : MonoBehaviour
     private IEnumerator Call()
     {
         yield return null;
-        CallBallManager();
-    }
-
-    private void CallBallManager()
-    {
-        ballManager.IncreaseIndex();
-        ballManager.CheckIndex();
-        ballManager.OpenSignal();
-
-        /*
-        Added For Trying Progress and Requirement
-        */
+        EventManager.Broadcast(GameEvent.OnSwitchPlayerTurn);
         
     }
+
+   
 
 
 }
