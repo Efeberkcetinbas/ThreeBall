@@ -128,8 +128,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: WeaponSelection, Assembly-CSharp
-        m_MethodName: SelectWeapon
+        m_TargetAssemblyTypeName: ShopManager, Assembly-CSharp
+        m_MethodName: OnWeaponButtonClicked
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -153,13 +153,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   price: 1
   isPurchased: 0
-  canBuy: 0
   weaponImage: {fileID: 7215895610362279948}
   lockImage: {fileID: 7215895609871819178}
-  goldImage: {fileID: 7215895609014336125}
-  TickImage: {fileID: 7215895609752125629}
+  coinImage: {fileID: 7215895609014336125}
+  button: {fileID: 7215895608577547597}
   priceText: {fileID: 7215895610306021924}
-  weaponData: {fileID: 11400000, guid: db4d7e5d4500e874b9fded6b716139a2, type: 2}
 --- !u!1 &7215895609014336125
 GameObject:
   m_ObjectHideFlags: 0

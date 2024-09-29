@@ -6,7 +6,7 @@ using DG.Tweening;
 public class PlayerWeapon : MonoBehaviour
 {
     [SerializeField] private List<SpriteRenderer> spriteRenderer=new List<SpriteRenderer>();
-    [SerializeField] private SwordData swordData;
+    [SerializeField] private WeaponData weaponData;
     [SerializeField] private PlayerData playerData;
  
 
@@ -21,7 +21,7 @@ public class PlayerWeapon : MonoBehaviour
     {
         for (int i = 0; i < spriteRenderer.Count; i++)
         {
-            spriteRenderer[i].sprite=swordData.SwordSprite;    
+            spriteRenderer[i].sprite=weaponData.sprite;    
         }
         
     }

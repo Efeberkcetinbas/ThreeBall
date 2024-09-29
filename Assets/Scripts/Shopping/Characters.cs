@@ -4,75 +4,32 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+[System.Serializable]
 public class Characters : MonoBehaviour
 {
-    public int price;
-    public int power;
+    public int price; // Price of the character
+    
+    public bool isPurchased = false; // Purchase status
 
-    public bool isPurchased = false;
-    public bool canBuy = false;
-
-    public Image characterImage;
-    public GameObject lockImage, goldImage, tickImage;
-
-    internal Button button;
-    public TextMeshProUGUI priceText;
-
-    public CharacterData characterData;
-    public PlayerData playerData;
+    public Image characterImage; // Image of the character
+    public GameObject lockImage; // Lock image UI element
+    public GameObject coinImage; // Lock image UI element
+    public Button button; // Button to interact with the character
+    public TextMeshProUGUI priceText; // Text to show the price
 
     private void Start()
     {
         button = GetComponent<Button>();
         priceText.text = price.ToString();
-        CheckPurchase();
+        //UpdateUI();
     }
 
-    private void OnEnable()
+    // Update UI elements based on purchase status
+    public void UpdateUI()
     {
-        EventManager.AddHandler(GameEvent.OnButtonClicked, OnButtonClicked);
-        EventManager.AddHandler(GameEvent.OnCharacterSelected, OnCharacterSelected);
-    }
-
-    private void OnDisable()
-    {
-        EventManager.RemoveHandler(GameEvent.OnButtonClicked, OnButtonClicked);
-        EventManager.RemoveHandler(GameEvent.OnCharacterSelected, OnCharacterSelected);
-    }
-
-    private void OnButtonClicked()
-    {
-        CheckPurchase();
-    }
-
-    private void OnCharacterSelected()
-    {
-        CheckPurchase();
-    }
-
-    private void CheckPurchase()
-    {
-        // If already purchased, update the visuals
-        if (characterData.isPurchased)
-        {
-            lockImage.SetActive(false);
-            button.interactable = true;
-            goldImage.SetActive(false);
-            //tickImage.SetActive(true);
-            priceText.gameObject.SetActive(false);
-            isPurchased = true;
-        }
-
-        // Check if the player can buy the character
-        if (ScoreManager.Instance.score >= price || characterData.isPurchased)
-        {
-            button.interactable = true;
-            canBuy = true;
-        }
-        else
-        {
-            button.interactable = false;
-            canBuy = false;
-        }
+        lockImage.SetActive(!isPurchased); // Show/hide lock image
+        coinImage.SetActive(!isPurchased);
+        button.interactable = !isPurchased; // Enable/disable button based on purchase status
+        priceText.gameObject.SetActive(!isPurchased); // Hide price text if purchased
     }
 }

@@ -50,6 +50,7 @@ public class BossDamageControl : MonoBehaviour
         StartCoroutine(ChangeColor());
         MakeRandomParticle();
         textParticles[particleIndex].Play();
+        transform.DOShakeScale(.25f,.5f,5);
     }
 
     private IEnumerator ChangeColor()

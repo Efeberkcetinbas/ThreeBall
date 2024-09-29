@@ -3,75 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+
+[System.Serializable]
 public class Weapons : MonoBehaviour
 {
-    //Character ile ayni neredeyse daha sonra kodu gelistir
-    public int price;
+    public int price; // Price of the Weapon
+    
+    public bool isPurchased = false; // Purchase status
 
-    public bool isPurchased=false;
-    public bool canBuy=false;
+    public Image weaponImage; // Image of the Weapon
+    public GameObject lockImage; // Lock image UI element
+    public GameObject coinImage; // Lock image UI element
+    public Button button; // Button to interact with the Weapon
+    public TextMeshProUGUI priceText; // Text to show the price
 
-    public Image weaponImage;
-    public GameObject lockImage,goldImage,TickImage;
-
-    internal Button button;
-
-    public TextMeshProUGUI priceText;
-
-    public WeaponData weaponData;
-    private void Start() 
+    private void Start()
     {
-        button=GetComponent<Button>();
-        priceText.text=price.ToString();
+        button = GetComponent<Button>();
+        priceText.text = price.ToString();
+        //UpdateUI();
     }
 
-    private void OnEnable() 
+    // Update UI elements based on purchase status
+    public void UpdateWeaponUI()
     {
-        EventManager.AddHandler(GameEvent.OnButtonClicked,OnButtonClicked);
-        EventManager.AddHandler(GameEvent.OnWeaponSelected,OnWeaponSelected);
-    }
-
-    private void OnDisable() 
-    {
-        EventManager.RemoveHandler(GameEvent.OnButtonClicked,OnButtonClicked);
-        EventManager.RemoveHandler(GameEvent.OnWeaponSelected,OnWeaponSelected);
-    }
-
-
-    private void OnButtonClicked()
-    {
-        CheckPurchase();
-    }
-
-    private void OnWeaponSelected()
-    {
-        CheckPurchase();
-    }
-
-    private void CheckPurchase()
-    {
-        if(weaponData.isPurchased)
-        {
-            priceText.text="B";
-            priceText.gameObject.SetActive(false);
-            goldImage.SetActive(false);
-            TickImage.SetActive(true);
-            lockImage.SetActive(false);
-            button.interactable=true;
-            
-            isPurchased=true;
-        }
-
-        if(ScoreManager.Instance.score>=price  || weaponData.isPurchased)
-        {
-            button.interactable=true;
-            canBuy=true;
-        }
-
-        else
-        {
-            button.interactable=false;
-            canBuy=false;
-        }
+        lockImage.SetActive(!isPurchased); // Show/hide lock image
+        coinImage.SetActive(!isPurchased);
+        button.interactable = !isPurchased; // Enable/disable button based on purchase status
+        priceText.gameObject.SetActive(!isPurchased); // Hide price text if purchased
     }
 }

@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
 
     private void OnNextLevel()
     {
-        playerData.characterIndex=1;
+        //playerData.characterIndex=1;
         //spriteRenderer.sprite=emojis[playerData.characterIndex + playerData.IncreasePower];
     }
    
