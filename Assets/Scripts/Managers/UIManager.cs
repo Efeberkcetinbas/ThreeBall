@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI[] LevelText;
     public TextMeshProUGUI ScoreText;
     public TextMeshProUGUI BossNameText;
+    public TextMeshProUGUI MoveText;
 
     [Header("Images")]
     public Image progressImage;
@@ -66,7 +67,10 @@ public class UIManager : MonoBehaviour
         progressImage.DOFillAmount(value,duration);
     }
 
-    
+    public void UpgradeMoveNumber(int moveNumber)
+    {
+        MoveText.SetText("Move: " + moveNumber);
+    }
 
     public void StartFader()
     {

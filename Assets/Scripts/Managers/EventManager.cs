@@ -23,6 +23,8 @@ public enum GameEvent
     OnSelection,
     OnCharacterSelected,
     OnWeaponSelected,
+    OnSetMoveZero,
+    OnBallShoot,
     
 
     //Player

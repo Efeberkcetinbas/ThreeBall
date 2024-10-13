@@ -20,6 +20,7 @@ public class BallControl : MonoBehaviour
     public bool canShoot=false;
 
     private Camera cm;
+    private bool canContinue=true;
 
     
     private GameManager gameManager;
@@ -37,13 +38,22 @@ public class BallControl : MonoBehaviour
     private void OnEnable() 
     {
         EventManager.AddHandler(GameEvent.OnNextLevel,StopSpinning);
+        EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.AddHandler(GameEvent.OnBossDie,OnBossDie);
+        EventManager.AddHandler(GameEvent.OnBallShoot,OnBallShoot);
     }
 
     private void OnDisable() 
     {
         EventManager.RemoveHandler(GameEvent.OnNextLevel,StopSpinning);
+        EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.RemoveHandler(GameEvent.OnBossDie,OnBossDie);
+        EventManager.RemoveHandler(GameEvent.OnBallShoot,OnBallShoot);
+    }
+
+    private void OnBallShoot()
+    {
+        canContinue=false;
     }
 
     private void StopSpinning()
@@ -61,12 +71,16 @@ public class BallControl : MonoBehaviour
     {
         if(!GameManager.Instance.isGameEnd)
         {
-            if(canShoot)
+            if(canShoot && canContinue)
                 DragControl();
         }
             
     }
 
+    private void OnNextLevel()
+    {
+        canContinue=true;
+    }
     
 
     private void DragControl()
@@ -121,6 +135,7 @@ public class BallControl : MonoBehaviour
         transform.DOScale(new Vector3(.5f,.5f,.5f),0.2f);
         gameManager.canCollide=true;
         EventManager.Broadcast(GameEvent.OnFingerRelease);
+        GameManager.Instance.UpdateMoveNumber(-1);
 
         
 

@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Requirement")]
     public int RequirementNumber;
+    public int MoveNumber;
     public string BossName;
     
 
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour
 
 
     private int tempRequirementNumber;
+    
     private float progressNumber=0;
 
     [Header("Line Collisions")]
@@ -132,10 +134,41 @@ public class GameManager : MonoBehaviour
     public void UpdateRequirement()
     {
         RequirementNumber=FindObjectOfType<RequirementControl>().requirementNumber;
+        MoveNumber=FindObjectOfType<MoveRequirement>().moveNumber;
+        UIManager.Instance.UpgradeMoveNumber(MoveNumber);
         tempRequirementNumber=RequirementNumber;
         BossName=FindObjectOfType<RequirementControl>().bossName;
         UIManager.Instance.UpgradeBossNameText();
     }
+
+    public void UpdateMoveNumber(int useMove)
+    {
+        MoveNumber+=useMove;
+        UIManager.Instance.UpgradeMoveNumber(MoveNumber);
+        CheckMoveNumber();
+    }
+
+    private void CheckMoveNumber()
+    {
+        if(MoveNumber<=0)
+        {
+            EventManager.Broadcast(GameEvent.OnBallShoot);
+            StartCoroutine(CheckIfSuccessOrNot());
+        }
+        else
+            return;
+    }
+
+    private IEnumerator CheckIfSuccessOrNot()
+    {
+        yield return new WaitForSeconds(2);
+        isGameEnd=true;
+        if(!success)
+            EventManager.Broadcast(GameEvent.OnSetMoveZero);
+
+
+    }
+
 
     public void UpdateProgress()
     {
