@@ -1,2 +1,2 @@
-# Its before I learn Event handler and Observer Pattern
+# This was before I learned about Event Handlers and the Some Design Pattern.
 # ThreeBall
